@@ -2,6 +2,8 @@ package com.tuempresa.service;
 
 import com.tuempresa.dao.TrainerDAO;
 import com.tuempresa.dao.UserDAO;
+import com.tuempresa.dto.CreateGymUserResponseDto;
+import com.tuempresa.dto.CreateTrainerRequestDto;
 import com.tuempresa.entity.Trainer;
 import com.tuempresa.entity.User;
 
@@ -45,11 +47,23 @@ public class TrainerService {
 		return user; 
 	}
 	
-	public User createUserTrainer(User user, Long trainingTypeId) {
-        User savedUser = userService.createUser(user);
-        Trainer trainer = new Trainer(null, savedUser.getId(), trainingTypeId);
+	public CreateGymUserResponseDto createUserTrainer(CreateTrainerRequestDto trainerRequestDto) {
+		User userToSave = new User(trainerRequestDto.getFirstName(), trainerRequestDto.getLastName(), true);
+		
+		
+        User savedUser = userService.createUser(userToSave);
+        
+        Trainer trainer = new Trainer();
+        trainer.setUserId(savedUser.getId());
+        trainer.setTrainingTypeId(trainerRequestDto.getTrainingTypeId());
         trainerDAO.save(trainer);
-        return savedUser;
+        
+//        CreateGymUserResponseDto createGymUserResponseDto = new CreateGymUserResponseDto();
+//        createGymUserResponseDto.setUsername(savedUser.getUsername());
+//        createGymUserResponseDto.setPassword(savedUser.getPassword());
+//        
+//        return createGymUserResponseDto;
+        return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
 	}
 	
 	

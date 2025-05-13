@@ -10,7 +10,8 @@ import com.tuempresa.service.TrainerService;
 
 import lombok.RequiredArgsConstructor;
 
-import com.tuempresa.dto.TrainerRequestDto;
+import com.tuempresa.dto.CreateGymUserResponseDto;
+import com.tuempresa.dto.CreateTrainerRequestDto;
 import com.tuempresa.entity.User;
 
 @RestController
@@ -24,19 +25,9 @@ public class TrainerController {
 	public User getTrainerByUsername(@PathVariable String username) {
 		return trainerService.getTrainerUserByUsernameUser(username);
 	}
-	
+
 	@PostMapping("")
-	public User getTrainerByUsername(@RequestBody TrainerRequestDto trainerRequestDto) {
-		User userToSave = new User();
-		userToSave.setFirstName(trainerRequestDto.getFirstName());
-		userToSave.setLastName(trainerRequestDto.getLastName());
-		
-		User savedUser = trainerService.createUserTrainer(userToSave, trainerRequestDto.getTrainingTypeId());
-		
-		User userToReturn = new User();
-		userToReturn.setUsername(savedUser.getUsername());
-		userToReturn.setPassword(savedUser.getPassword());
-		
-		return userToReturn;
+	public CreateGymUserResponseDto createTrainer(@RequestBody CreateTrainerRequestDto trainerRequestDto) {
+		return trainerService.createUserTrainer(trainerRequestDto);
 	}
 }
