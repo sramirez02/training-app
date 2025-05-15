@@ -161,6 +161,22 @@ public class TraineeService {
         // 4. Retornar el perfil actualizado (usando el método existente)
         return getTraineeProfile(user.getUsername());
     }
+    
+    public void deleteTraineeByUsername(String username) {
+        User user = userService.getByUsername(username);
+        
+        if (user == null) {
+            throw new RuntimeException("Usuario no encontrado: " + username);
+        }
+
+        Trainee trainee = traineeDAO.findByUserId(user.getId());
+        if (trainee != null) {
+            traineeDAO.delete(trainee); // Elimina el Trainee
+            log.info("Trainee eliminado: {}", username);
+        } else {
+            throw new RuntimeException("Trainee no encontrado para el usuario: " + username);
+        }
+    }
 
 
 
@@ -229,22 +245,26 @@ public class TraineeService {
         return traineeDAO.findByUserId(userId);
     }
 
-    public void deleteTraineeByUsername(String username) {
-        
-        User user = userService.getByUsername(username);
-        if (user != null) {
-           
-            Trainee trainee = this.getByUserId(user.getId());
-            if (trainee != null) {
-                
-                traineeDAO.delete(trainee);
-                log.info("Trainee profile and related trainings deleted successfully for username: {}", username);
-            } else {
-                log.warn("Trainee not found for username: {}", username);
-            }
-        } else {
-            log.warn("User not found with username: {}", username);
-        }
-    }
+    
+    
+//OLD DELETE
+    
+//    public void deleteTraineeByUsername(String username) {
+//        
+//        User user = userService.getByUsername(username);
+//        if (user != null) {
+//           
+//            Trainee trainee = this.getByUserId(user.getId());
+//            if (trainee != null) {
+//                
+//                traineeDAO.delete(trainee);
+//                log.info("Trainee profile and related trainings deleted successfully for username: {}", username);
+//            } else {
+//                log.warn("Trainee not found for username: {}", username);
+//            }
+//        } else {
+//            log.warn("User not found with username: {}", username);
+//        }
+//    }
 
 }

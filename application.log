@@ -7893,3 +7893,28 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-05-15 15:19:25.340 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 94 ms. Found 5 JDBC repository interfaces.
 2025-05-15 15:19:26.822 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2080 ms
 2025-05-15 15:19:26.954 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 16:10:19.177 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 16:10:19.665 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 16:10:19.752 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 81 ms. Found 5 JDBC repository interfaces.
+2025-05-15 16:10:21.241 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2055 ms
+2025-05-15 16:10:21.407 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 16:12:16.900 [http-nio-8080-exec-6] INFO  com.tuempresa.service.TraineeService - Trainee eliminado: maria.capacho
+2025-05-15 16:13:04.148 [http-nio-8080-exec-7] INFO  com.tuempresa.service.TraineeService - Trainee eliminado: lina.guzman
+2025-05-15 16:44:37.846 [http-nio-8080-exec-10] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.tuempresa.dto.CreateTraineeRequestDto` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('firstName')]
+2025-05-15 16:57:22.550 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 16:57:23.762 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 16:57:23.948 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 171 ms. Found 5 JDBC repository interfaces.
+2025-05-15 16:57:27.245 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4682 ms
+2025-05-15 16:57:27.452 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 17:00:22.960 [http-nio-8080-exec-8] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-05-15 17:07:43.511 [http-nio-8080-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-05-15 17:09:51.086 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 17:09:51.871 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 17:09:52.003 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 121 ms. Found 5 JDBC repository interfaces.
+2025-05-15 17:09:54.549 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3446 ms
+2025-05-15 17:09:54.748 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 17:13:00.422 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 17:13:01.146 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 17:13:01.264 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 108 ms. Found 5 JDBC repository interfaces.
+2025-05-15 17:13:03.667 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3230 ms
+2025-05-15 17:13:03.829 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
