@@ -3,7 +3,7 @@ package com.tuempresa.dto;
 import lombok.Data;
 
 @Data
-public class PasswordChangeRequest {
+public class ChangePasswordRequestDto {
     private String username;
     private String currentPassword;
     private String newPassword;

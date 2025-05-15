@@ -7767,3 +7767,129 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-05-12 19:02:25.739 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 4 JDBC repository interfaces.
 2025-05-12 19:02:27.174 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2057 ms
 2025-05-12 19:02:27.316 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-12 21:47:21.628 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-12 21:47:22.110 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-12 21:47:22.191 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 4 JDBC repository interfaces.
+2025-05-12 21:47:23.738 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2103 ms
+2025-05-12 21:47:23.803 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-12 21:58:38.685 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-12 21:58:39.171 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-12 21:58:39.258 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 4 JDBC repository interfaces.
+2025-05-12 21:58:40.594 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1899 ms
+2025-05-12 21:58:40.665 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-12 22:20:46.010 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-12 22:20:46.494 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-12 22:20:46.576 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 4 JDBC repository interfaces.
+2025-05-12 22:20:47.949 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1931 ms
+2025-05-12 22:20:48.092 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-12 22:31:46.501 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-12 22:31:47.011 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-12 22:31:47.094 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 4 JDBC repository interfaces.
+2025-05-12 22:31:48.479 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1966 ms
+2025-05-12 22:31:48.603 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-12 22:38:36.115 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-12 22:38:36.633 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-12 22:38:36.719 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 4 JDBC repository interfaces.
+2025-05-12 22:38:38.084 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1962 ms
+2025-05-12 22:38:38.146 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-12 22:39:50.860 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-12 22:39:51.356 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-12 22:39:51.441 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 4 JDBC repository interfaces.
+2025-05-12 22:39:52.797 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1932 ms
+2025-05-12 22:39:52.869 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-12 22:40:12.402 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-12 22:40:12.847 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-12 22:40:12.945 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 88 ms. Found 4 JDBC repository interfaces.
+2025-05-12 22:40:14.329 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1918 ms
+2025-05-12 22:40:14.377 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-13 21:42:03.377 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-13 21:42:03.955 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-13 21:42:04.065 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101 ms. Found 4 JDBC repository interfaces.
+2025-05-13 21:42:05.793 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2404 ms
+2025-05-13 21:42:05.961 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-13 21:46:35.256 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-13 21:46:35.733 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-13 21:46:35.816 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 4 JDBC repository interfaces.
+2025-05-13 21:46:37.197 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1932 ms
+2025-05-13 21:46:37.263 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-13 21:54:19.191 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-13 21:54:19.732 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-13 21:54:19.816 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 4 JDBC repository interfaces.
+2025-05-13 21:54:21.352 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2153 ms
+2025-05-13 21:54:21.418 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-13 22:11:26.856 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-13 22:11:27.349 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-13 22:11:27.432 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 4 JDBC repository interfaces.
+2025-05-13 22:11:28.875 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2006 ms
+2025-05-13 22:11:28.931 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-13 23:18:50.406 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-13 23:18:50.901 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-13 23:18:50.984 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 4 JDBC repository interfaces.
+2025-05-13 23:18:52.376 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1961 ms
+2025-05-13 23:18:52.439 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-13 23:28:52.808 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-13 23:28:53.360 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-13 23:28:53.462 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 93 ms. Found 4 JDBC repository interfaces.
+2025-05-13 23:28:54.987 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2165 ms
+2025-05-13 23:28:55.062 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-13 23:33:31.556 [http-nio-8080-exec-7] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-14 00:00:11.752 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-14 00:00:12.496 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-14 00:00:12.608 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 102 ms. Found 4 JDBC repository interfaces.
+2025-05-14 00:00:14.284 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2518 ms
+2025-05-14 00:00:14.419 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 01:24:14.080 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 01:24:14.726 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 01:24:14.838 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101 ms. Found 5 JDBC repository interfaces.
+2025-05-15 01:24:16.712 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2623 ms
+2025-05-15 01:24:16.862 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 01:49:44.386 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 01:49:44.942 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 01:49:45.052 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101 ms. Found 5 JDBC repository interfaces.
+2025-05-15 01:49:46.478 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2085 ms
+2025-05-15 01:49:46.599 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 02:00:00.678 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 02:00:01.198 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 02:00:01.292 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 84 ms. Found 5 JDBC repository interfaces.
+2025-05-15 02:00:02.840 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2149 ms
+2025-05-15 02:00:02.956 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 12:47:48.166 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 12:47:48.732 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 12:47:48.828 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 89 ms. Found 5 JDBC repository interfaces.
+2025-05-15 12:47:50.150 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1971 ms
+2025-05-15 12:47:50.269 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 14:19:54.217 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 14:19:54.652 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 14:19:54.748 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 89 ms. Found 5 JDBC repository interfaces.
+2025-05-15 14:19:55.980 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1756 ms
+2025-05-15 14:19:56.099 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 14:40:00.947 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 14:40:01.505 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 14:40:01.605 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 91 ms. Found 5 JDBC repository interfaces.
+2025-05-15 14:40:03.034 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2080 ms
+2025-05-15 14:40:03.169 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 14:50:03.434 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 14:50:03.928 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 14:50:04.015 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 5 JDBC repository interfaces.
+2025-05-15 14:50:05.557 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2114 ms
+2025-05-15 14:50:05.696 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 14:52:18.769 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 14:52:19.321 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 14:52:19.415 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 85 ms. Found 5 JDBC repository interfaces.
+2025-05-15 14:52:20.918 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2139 ms
+2025-05-15 14:52:21.062 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 14:57:40.730 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 14:57:41.215 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 14:57:41.298 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 5 JDBC repository interfaces.
+2025-05-15 14:57:42.694 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1955 ms
+2025-05-15 14:57:42.755 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 15:12:24.270 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 15:12:24.783 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 15:12:24.877 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 85 ms. Found 5 JDBC repository interfaces.
+2025-05-15 15:12:26.377 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2099 ms
+2025-05-15 15:12:26.516 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 15:19:24.733 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 15:19:25.236 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 15:19:25.340 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 94 ms. Found 5 JDBC repository interfaces.
+2025-05-15 15:19:26.822 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2080 ms
+2025-05-15 15:19:26.954 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080

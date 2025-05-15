@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 public class TrainingType {
 	@Id
 	private Long id;
-
-
 	private String trainingTypeName;
 	
 }

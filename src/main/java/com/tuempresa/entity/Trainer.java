@@ -17,5 +17,7 @@ public class Trainer {
 	private Long userId;
 	private Long trainingTypeId;
 
-	
+	 public Long getTrainingTypeId() {
+	        return trainingTypeId;
+	    }
 }

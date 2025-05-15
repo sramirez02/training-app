@@ -22,9 +22,9 @@ public class TrainingAppApplication {
         
         Context ctx = tomcat.addContext("", null);
         
-        Tomcat.addServlet(ctx, "default", new DefaultServlet());
-        ctx.addServletMappingDecoded("/", "default");
-        
+//        Tomcat.addServlet(ctx, "default", new DefaultServlet());
+//        ctx.addServletMappingDecoded("/", "default");
+       
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.register(WebConfig.class, DataConfig.class);
         
@@ -38,4 +38,7 @@ public class TrainingAppApplication {
         log.info("Aplicación iniciada en http://localhost:{}", port);
         tomcat.getServer().await();
     }
+    
+    
+    
 }

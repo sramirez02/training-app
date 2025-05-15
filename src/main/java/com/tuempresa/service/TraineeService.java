@@ -7,8 +7,19 @@ import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration
 import org.springframework.stereotype.Service;
 
 import com.tuempresa.dao.TraineeDAO;
+import com.tuempresa.dao.TraineeTrainerDAO;
+import com.tuempresa.dao.TrainerDAO;
+import com.tuempresa.dao.TrainingTypeDAO;
+import com.tuempresa.dto.CreateGymUserResponseDto;
+import com.tuempresa.dto.CreateTraineeRequestDto;
+import com.tuempresa.dto.CreateTrainerRequestDto;
+import com.tuempresa.dto.TraineeProfileResponseDto;
+import com.tuempresa.dto.TrainerInfoDto;
+import com.tuempresa.dto.UpdateTraineeRequestDto;
 import com.tuempresa.entity.Trainee;
+import com.tuempresa.entity.TraineeTrainer;
 import com.tuempresa.entity.Trainer;
+import com.tuempresa.entity.TrainingType;
 import com.tuempresa.entity.User;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,12 +28,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class TraineeService {
-    private final TraineeDAO traineeDAO;
-    private final UserService userService;
+	 @Autowired
+	    private TraineeDAO traineeDAO;
+
+	    @Autowired
+	    private UserService userService;
+
+	    @Autowired
+	    private TraineeTrainerDAO traineeTrainerDAO; // ✅ Inyectado
+
+	    @Autowired
+	    private TrainerDAO trainerDAO; 
+	    
+	    @Autowired
+	    private TrainingTypeDAO trainingTypeDAO;
 
     @Autowired
     public TraineeService(TraineeDAO traineeDAO, UserService userService) {
@@ -42,36 +66,127 @@ public class TraineeService {
     	return traineeDAO.save(trainee);
     }
     
-    public User getTraineeUserByUsername(String username) {
+    public User getTraineeUserByUsernameUser(String username) {
 		User user = userService.getByUsername(username);
 		Trainee trainee = this.getByUserId(user.getId());
 		user.setTrainee(trainee);
 		return user;
 	}
     
+    // agrego aqui lo nuevo
     
+    public CreateGymUserResponseDto createUserTrainee(CreateTraineeRequestDto traineeRequestDto) {
+		User userToSave = new User(traineeRequestDto.getFirstName(), traineeRequestDto.getLastName(), true);
+		
+		
+        User savedUser = userService.createUser(userToSave);
+        
+        Trainee trainee = new Trainee();
+        trainee.setUserId(savedUser.getId());
+        trainee.setDateOfBirth(null);
+        trainee.setAddress(null);
+        traineeDAO.save(trainee);
+        
+        return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
+    }
     
-	public void updateTraineeProfile(String username, String newFirstName, String newLastName, LocalDate newDateOfBirth, String newAddress) {
-	    Optional<User> userOpt = userService.findByUsername(username);
+        //hasta aqui
+    
+    public TraineeProfileResponseDto getTraineeProfile(String username) {
+        User user = userService.getByUsername(username);
+        if (user == null) throw new RuntimeException("Usuario no encontrado");
 
-	    if (userOpt.isPresent()) {
-	        User user = userOpt.get();
-	        user.setFirstName(newFirstName);
-	        user.setLastName(newLastName);
-	        user.setUsername(newFirstName.toLowerCase() + "." + newLastName.toLowerCase());
-	        userService.save(user); 
-	        
-	        Trainee trainee = this.getByUserId(user.getId());
-	        trainee.setDateOfBirth(newDateOfBirth);
-	        trainee.setAddress(newAddress);
-	        traineeDAO.save(trainee); 
+        Trainee trainee = traineeDAO.findByUserId(user.getId());
+        if (trainee == null) {
+        	throw new RuntimeException("Trainee no encontrado");
+        }
 
-	        	       
-	        log.info("Trainee profile updated.");
-	    } else {
-	        log.warn("Trainee not found with username: {}", username);
-	    }
-	}
+        return TraineeProfileResponseDto.builder()
+            .firstName(user.getFirstName())
+            .lastName(user.getLastName())
+            .dateOfBirth(trainee.getDateOfBirth())
+            .address(trainee.getAddress())
+            .isActive(user.getIsActive())
+            .trainersList(getTrainersForTrainee(trainee.getId()))
+            .build();
+    }
+
+    private List<TrainerInfoDto> getTrainersForTrainee(Long traineeId) {
+        List<TraineeTrainer> relations = traineeTrainerDAO.findByTraineeId(traineeId);
+        return relations.stream()
+            .map(relation -> {
+                Trainer trainer = trainerDAO.findById(relation.getTrainerId())
+                    .orElseThrow(() -> new RuntimeException("Trainer no encontrado"));
+                User trainerUser = userService.getUserById(trainer.getUserId());
+                TrainingType trainingType = trainingTypeDAO.findById(trainer.getTrainingTypeId())
+                    .orElseThrow(() -> new RuntimeException("Tipo de entrenamiento no encontrado"));
+
+                return TrainerInfoDto.builder()
+                    .username(trainerUser.getUsername())
+                    .firstName(trainerUser.getFirstName())
+                    .lastName(trainerUser.getLastName())
+                    .specialization(trainingType) // Usa el objeto TrainingType completo
+                    .build();
+            })
+            .collect(Collectors.toList());
+    }
+
+    
+    //Nuevo Update
+    
+    public TraineeProfileResponseDto updateTraineeProfile(UpdateTraineeRequestDto request) {
+        // 1. Buscar al usuario por username
+        User user = userService.getByUsername(request.getUsername());
+        if (user == null) {
+            throw new RuntimeException("Usuario no encontrado: " + request.getUsername());
+        }
+
+        // 2. Actualizar datos del User
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setIsActive(request.isActive());
+       // user.setUsername(user.getFirstName().toLowerCase() + "." + user.getLastName().toLowerCase());
+        userService.save(user);
+
+        // 3. Actualizar datos del Trainee
+        Trainee trainee = traineeDAO.findByUserId(user.getId());
+        if (request.getDateOfBirth() != null) {
+            trainee.setDateOfBirth(request.getDateOfBirth());
+        }
+        if (request.getAddress() != null) {
+            trainee.setAddress(request.getAddress());
+        }
+        traineeDAO.save(trainee);
+
+        // 4. Retornar el perfil actualizado (usando el método existente)
+        return getTraineeProfile(user.getUsername());
+    }
+
+
+
+// Update viejo     
+    
+//	public void updateTraineeProfile(String username, String newFirstName, String newLastName, LocalDate newDateOfBirth, String newAddress) {
+//	    Optional<User> userOpt = userService.findByUsername(username);
+//
+//	    if (userOpt.isPresent()) {
+//	        User user = userOpt.get();
+//	        user.setFirstName(newFirstName);
+//	        user.setLastName(newLastName);
+//	        user.setUsername(newFirstName.toLowerCase() + "." + newLastName.toLowerCase());
+//	        userService.save(user); 
+//	        
+//	        Trainee trainee = this.getByUserId(user.getId());
+//	        trainee.setDateOfBirth(newDateOfBirth);
+//	        trainee.setAddress(newAddress);
+//	        traineeDAO.save(trainee); 
+//
+//	        	       
+//	        log.info("Trainee profile updated.");
+//	    } else {
+//	        log.warn("Trainee not found with username: {}", username);
+//	    }
+//	}
     
 	
 	public void toggleTraineeStatus(String username, boolean activate) {

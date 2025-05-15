@@ -12,11 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table
+@Table("trainee_trainer")
 public class TraineeTrainer {
 	@Id
 	private Long id;
-	
 	private Long traineeId;
 	private Long trainerId; 
 }

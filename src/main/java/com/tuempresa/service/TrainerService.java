@@ -35,16 +35,19 @@ public class TrainerService {
 	public Trainer getTrainerByUsername(String username) {
         User user = userService.getByUsername(username);
         if (user != null) {
-        	return trainerDAO.findByUserId(user.getId());
+        	return trainerDAO.findByUserId(user.getId()).orElse(null);
         }
         return null;
     }
 	
 	public User getTrainerUserByUsernameUser(String username) {
-		User user = userService.getByUsername(username);
-		Trainer trainer = this.getByUserId(user.getId());
-		user.setTrainer(trainer);
-		return user; 
+	    User user = userService.getByUsername(username);
+	    if (user == null) {
+	        throw new RuntimeException("Usuario no encontrado: " + username);
+	    }
+	    Trainer trainer = this.getByUserId(user.getId()); // ✅ Devuelve Trainer, no Optional
+	    user.setTrainer(trainer); // ✅ Asigna directamente el objeto Trainer
+	    return user; 
 	}
 	
 	public CreateGymUserResponseDto createUserTrainer(CreateTrainerRequestDto trainerRequestDto) {
@@ -79,7 +82,7 @@ public class TrainerService {
 	        userService.save(user); 
 
 	        
-	        Trainer trainer = trainerDAO.findByUserId(user.getId());
+	        Trainer trainer = trainerDAO.findByUserId(user.getId()).orElse(null);
 	        if (trainer != null) {
 	            trainer.setTrainingTypeId(newTrainingTypeId);
 	            trainerDAO.save(trainer); 
@@ -128,7 +131,8 @@ public class TrainerService {
 	}
 
 	public Trainer getByUserId(Long userId) {
-		return trainerDAO.findByUserId(userId);
+	    return trainerDAO.findByUserId(userId)
+	        .orElseThrow(() -> new RuntimeException("Trainer no encontrado para userId: " + userId));
 	}
 
 

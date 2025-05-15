@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.util.List;
 
 @Configuration
@@ -22,6 +25,9 @@ public class WebConfig implements WebMvcConfigurer {
         // Comenta temporalmente esta línea para diagnóstico
         // converters.add(new MappingJackson2HttpMessageConverter());
         
+		ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+		
         // Agrega esto temporalmente
 		converters.add(new StringHttpMessageConverter());
         converters.add(new MappingJackson2HttpMessageConverter());

@@ -2,14 +2,22 @@ package com.tuempresa.dao;
 
 
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.tuempresa.entity.Trainer;
 
 @Repository
-public interface TrainerDAO extends CrudRepository<Trainer, Long> {
-	 Trainer findByUserId(long userId);
 
-	 
+
+public interface TrainerDAO extends CrudRepository<Trainer, Long> {
+    Optional<Trainer> findByUserId(Long userid);
 }
+
+//public interface TrainerDAO extends CrudRepository<Trainer, Long> {
+//	 Trainer findByUserId(long userId);
+//
+//	 
+//}

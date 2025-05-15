@@ -32,11 +32,43 @@ public class UserService {
         return user;
     }
 
-  	public Optional<User> authenticate(String username, String password) {
-		return ((List<User>) userDAO.findAll()).stream()
-				.filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password)).findFirst();
-	}
+    
+    public boolean authenticate(String username, String password) {
+        return userDAO.findByUsername(username)
+            .map(user -> user.getPassword().equals(password))
+            .orElse(false);
+    }
+    
+    
+    //PREGUNTAR IRWIN 
+//    public boolean authenticate(String username, String password) {
+//    	Optional<User> userOpt = userDAO.findByUsername(username);
+//        if (userOpt.isEmpty()) {
+//            System.out.println("Usuario no encontrado: " + username); // Log
+//            return false;
+//        }
+//        User user = userOpt.get();
+//        boolean isMatch = user.getPassword().equals(password);
+//        System.out.println("Contraseña coincide?: " + isMatch); // Log
+//        return isMatch;
+//    }
 
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
+        Optional<User> userOpt = userDAO.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            return false; 
+        }
+        
+        User user = userOpt.get();
+        if (!user.getPassword().equals(oldPassword)) {
+            return false; 
+        }
+        
+        user.setPassword(newPassword);
+        userDAO.save(user);
+        return true;
+    }
+    
     public List<User> getAllUsers() {
         return (List<User>) userDAO.findAll();
     }
