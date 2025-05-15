@@ -2,6 +2,9 @@ package com.tuempresa.controller;
 
 import com.tuempresa.dto.ChangePasswordRequestDto;
 import com.tuempresa.service.UserService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,10 +23,7 @@ public class GymUserController {
     }
 
     @PutMapping("/change-password")
-    public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordRequestDto request) {
-        if (request.getUsername() == null || request.getCurrentPassword() == null || request.getNewPassword() == null) {
-            return ResponseEntity.badRequest().build(); // 400
-        }
+    public ResponseEntity<Void> changePassword(@Valid @RequestBody ChangePasswordRequestDto request) {
 
         boolean success = userService.changePassword(
             request.getUsername(),
