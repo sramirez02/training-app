@@ -2,8 +2,12 @@
 package com.tuempresa.service;
 
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
 import org.springframework.stereotype.Service;
 
 import com.tuempresa.dao.TraineeDAO;
@@ -12,7 +16,6 @@ import com.tuempresa.dao.TrainerDAO;
 import com.tuempresa.dao.TrainingTypeDAO;
 import com.tuempresa.dto.CreateGymUserResponseDto;
 import com.tuempresa.dto.CreateTraineeRequestDto;
-import com.tuempresa.dto.CreateTrainerRequestDto;
 import com.tuempresa.dto.TraineeProfileResponseDto;
 import com.tuempresa.dto.TrainerInfoDto;
 import com.tuempresa.dto.UpdateTraineeRequestDto;
@@ -24,12 +27,6 @@ import com.tuempresa.entity.User;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 @Slf4j
 @Service
 public class TraineeService {
@@ -40,7 +37,7 @@ public class TraineeService {
 	    private UserService userService;
 
 	    @Autowired
-	    private TraineeTrainerDAO traineeTrainerDAO; // ✅ Inyectado
+	    private TraineeTrainerDAO traineeTrainerDAO;
 
 	    @Autowired
 	    private TrainerDAO trainerDAO; 
@@ -83,8 +80,8 @@ public class TraineeService {
         
         Trainee trainee = new Trainee();
         trainee.setUserId(savedUser.getId());
-        trainee.setDateOfBirth(null);
-        trainee.setAddress(null);
+        trainee.setDateOfBirth(traineeRequestDto.getDateOfBirth());
+        trainee.setAddress(traineeRequestDto.getAddress());
         traineeDAO.save(trainee);
         
         return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());

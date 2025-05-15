@@ -19,7 +19,6 @@ public class UpdateTraineeRequestDto {
     private LocalDate dateOfBirth; 
     private String address;
     
-    @NotBlank
     private boolean isActive;
 	
 	
