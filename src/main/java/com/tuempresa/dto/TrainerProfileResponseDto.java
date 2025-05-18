@@ -1,17 +1,21 @@
 package com.tuempresa.dto;
 
+import java.util.List;
+
 import com.tuempresa.entity.TrainingType;
 
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
 @Data
-public class TrainerInfoDto {
+@Builder
+public class TrainerProfileResponseDto {
 
-	private String username;
+	
 	private String firstName;
 	private String lastName;
 	private TrainingType specialization;
+	private boolean isActive;
+	private List<TraineeInfoDto> traineesList;
 
 }

@@ -5,13 +5,14 @@ import com.tuempresa.entity.TrainingType;
 import lombok.Builder;
 import lombok.Data;
 
+
 @Builder
 @Data
-public class TrainerInfoDto {
-
+public class UnassignedTrainerDto {
+	
 	private String username;
-	private String firstName;
-	private String lastName;
-	private TrainingType specialization;
+    private String firstName;
+    private String lastName;
+    private TrainingType specialization;
 
 }

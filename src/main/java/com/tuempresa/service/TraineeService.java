@@ -142,7 +142,7 @@ public class TraineeService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setIsActive(request.isActive());
-       // user.setUsername(user.getFirstName().toLowerCase() + "." + user.getLastName().toLowerCase());
+
         userService.save(user);
 
         // 3. Actualizar datos del Trainee
@@ -175,31 +175,6 @@ public class TraineeService {
         }
     }
 
-
-
-// Update viejo     
-    
-//	public void updateTraineeProfile(String username, String newFirstName, String newLastName, LocalDate newDateOfBirth, String newAddress) {
-//	    Optional<User> userOpt = userService.findByUsername(username);
-//
-//	    if (userOpt.isPresent()) {
-//	        User user = userOpt.get();
-//	        user.setFirstName(newFirstName);
-//	        user.setLastName(newLastName);
-//	        user.setUsername(newFirstName.toLowerCase() + "." + newLastName.toLowerCase());
-//	        userService.save(user); 
-//	        
-//	        Trainee trainee = this.getByUserId(user.getId());
-//	        trainee.setDateOfBirth(newDateOfBirth);
-//	        trainee.setAddress(newAddress);
-//	        traineeDAO.save(trainee); 
-//
-//	        	       
-//	        log.info("Trainee profile updated.");
-//	    } else {
-//	        log.warn("Trainee not found with username: {}", username);
-//	    }
-//	}
     
 	
 	public void toggleTraineeStatus(String username, boolean activate) {

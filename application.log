@@ -7964,3 +7964,218 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-05-15 17:32:39.189 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
 2025-05-15 17:32:39.803 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3971 ms
 2025-05-15 17:32:39.973 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 17:38:21.099 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-15 17:38:21.890 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-15 17:38:22.057 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 157 ms. Found 5 JDBC repository interfaces.
+2025-05-15 17:38:24.297 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-15 17:38:25.122 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4006 ms
+2025-05-15 17:38:25.319 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-15 17:38:30.008 [http-nio-8080-exec-1] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.tuempresa.dto.TraineeProfileResponseDto> com.tuempresa.controller.TraineeController.updateTraineeProfile(com.tuempresa.dto.UpdateTraineeRequestDto): [Field error in object 'updateTraineeRequestDto' on field 'username': rejected value [null]; codes [NotBlank.updateTraineeRequestDto.username,NotBlank.username,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateTraineeRequestDto.username,username]; arguments []; default message [username]]; default message [no debe estar vacío]] ]
+2025-05-16 22:41:47.467 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-16 22:41:48.076 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-16 22:41:48.169 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 87 ms. Found 5 JDBC repository interfaces.
+2025-05-16 22:41:49.784 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-16 22:41:50.145 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2659 ms
+2025-05-16 22:41:50.281 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-16 22:49:43.869 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-16 22:49:44.459 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-16 22:49:44.578 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 111 ms. Found 5 JDBC repository interfaces.
+2025-05-16 22:49:45.938 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-16 22:49:46.262 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2379 ms
+2025-05-16 22:49:46.389 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-16 23:01:27.207 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-16 23:01:27.845 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-16 23:01:27.933 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 81 ms. Found 5 JDBC repository interfaces.
+2025-05-16 23:01:29.281 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-16 23:01:29.621 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2404 ms
+2025-05-16 23:01:29.743 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-16 23:17:59.054 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-16 23:17:59.503 [main] WARN  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.tuempresa.config.WebConfig]
+2025-05-16 23:17:59.521 [main] ERROR org.springframework.web.servlet.DispatcherServlet - Context initialization failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.tuempresa.config.WebConfig]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:179) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:416) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:289) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:706) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:583) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:537) [spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:169) [spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.GenericServlet.init(GenericServlet.java:178) [jakarta.servlet-api-5.0.0.jar:5.0.0]
+	at org.apache.catalina.startup.Tomcat$ExistingStandardWrapper.loadServlet(Tomcat.java:1217) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:805) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:4617) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4910) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) [?:?]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:845) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) [?:?]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:240) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:917) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:488) [tomcat-embed-core-10.1.18.jar:10.1.18]
+	at com.tuempresa.TrainingAppApplication.main(TrainingAppApplication.java:36) [classes/:?]
+Caused by: java.lang.NoSuchMethodError: 'boolean org.springframework.beans.factory.support.BeanDefinitionRegistry.isBeanDefinitionOverridable(java.lang.String)'
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.checkCandidate(ClassPathBeanDefinitionScanner.java:349) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:288) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ComponentScanAnnotationParser.parse(ComponentScanAnnotationParser.java:128) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:306) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:246) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:197) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:165) ~[spring-context-6.1.6.jar:6.1.6]
+	... 38 more
+2025-05-16 23:19:57.691 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-16 23:19:58.191 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-16 23:19:58.280 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 5 JDBC repository interfaces.
+2025-05-16 23:19:59.611 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-16 23:19:59.958 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2255 ms
+2025-05-16 23:20:00.143 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 00:17:45.632 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 00:17:46.146 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 00:17:46.235 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 81 ms. Found 5 JDBC repository interfaces.
+2025-05-17 00:17:47.544 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 00:17:47.873 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2228 ms
+2025-05-17 00:17:48.015 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 00:42:47.390 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 00:42:47.912 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 00:42:48.006 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 86 ms. Found 5 JDBC repository interfaces.
+2025-05-17 00:42:49.328 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 00:42:49.641 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2242 ms
+2025-05-17 00:42:49.778 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 18:35:06.038 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 18:35:06.569 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 18:35:06.653 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 5 JDBC repository interfaces.
+2025-05-17 18:35:08.090 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 18:35:08.424 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2369 ms
+2025-05-17 18:35:08.547 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 18:35:22.538 [http-nio-8080-exec-1] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<com.tuempresa.dto.UpdateTrainerProfileResponseDto> com.tuempresa.controller.TrainerController.updateTrainerProfile(com.tuempresa.dto.UpdateTrainerRequestDto)]
+2025-05-17 18:35:29.391 [http-nio-8080-exec-4] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<com.tuempresa.dto.UpdateTrainerProfileResponseDto> com.tuempresa.controller.TrainerController.updateTrainerProfile(com.tuempresa.dto.UpdateTrainerRequestDto)]
+2025-05-17 19:00:29.487 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 19:00:29.890 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 19:00:29.960 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64 ms. Found 5 JDBC repository interfaces.
+2025-05-17 19:00:31.061 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 19:00:31.356 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1857 ms
+2025-05-17 19:00:31.465 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 21:12:54.080 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 21:12:54.604 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 21:12:54.693 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 5 JDBC repository interfaces.
+2025-05-17 21:12:56.030 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 21:12:56.359 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2269 ms
+2025-05-17 21:12:56.492 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 21:17:42.114 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 21:17:42.652 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 21:17:42.742 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 5 JDBC repository interfaces.
+2025-05-17 21:17:44.129 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 21:17:44.459 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2336 ms
+2025-05-17 21:17:44.577 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 21:33:54.904 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 21:33:55.415 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 21:33:55.513 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 90 ms. Found 5 JDBC repository interfaces.
+2025-05-17 21:33:56.908 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 21:33:57.238 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2327 ms
+2025-05-17 21:33:57.353 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 21:34:32.096 [http-nio-8080-exec-1] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<java.util.List<com.tuempresa.dto.UnassignedTrainerDto>> com.tuempresa.controller.TrainerController.getUnassignedActiveTrainers(com.tuempresa.dto.TraineeUsernameRequest)]
+2025-05-17 21:35:19.728 [http-nio-8080-exec-4] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<java.util.List<com.tuempresa.dto.UnassignedTrainerDto>> com.tuempresa.controller.TrainerController.getUnassignedActiveTrainers(com.tuempresa.dto.TraineeUsernameRequest)]
+2025-05-17 21:36:50.442 [http-nio-8080-exec-10] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<java.util.List<com.tuempresa.dto.UnassignedTrainerDto>> com.tuempresa.controller.TrainerController.getUnassignedActiveTrainers(com.tuempresa.dto.TraineeUsernameRequest)]
+2025-05-17 21:38:58.452 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 21:38:58.982 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 21:38:59.072 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 5 JDBC repository interfaces.
+2025-05-17 21:39:00.442 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 21:39:00.820 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2360 ms
+2025-05-17 21:39:00.876 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 21:45:52.402 [http-nio-8080-exec-4] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<java.util.List<com.tuempresa.dto.UnassignedTrainerDto>> com.tuempresa.controller.TrainerController.getUnassignedActiveTrainers(com.tuempresa.dto.TraineeUsernameRequest)]
+2025-05-17 21:58:53.694 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 21:58:54.226 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 21:58:54.311 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 5 JDBC repository interfaces.
+2025-05-17 21:58:55.672 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 21:58:56.017 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2314 ms
+2025-05-17 21:58:56.135 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 22:14:24.971 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 22:14:25.483 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 22:14:25.570 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 81 ms. Found 5 JDBC repository interfaces.
+2025-05-17 22:14:26.871 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 22:14:27.208 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2225 ms
+2025-05-17 22:14:27.330 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 22:18:47.149 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 22:18:47.668 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 22:18:47.755 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 5 JDBC repository interfaces.
+2025-05-17 22:18:49.060 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 22:18:49.377 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2214 ms
+2025-05-17 22:18:49.490 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 22:58:14.808 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 22:58:15.657 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 22:58:15.804 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 137 ms. Found 5 JDBC repository interfaces.
+2025-05-17 22:58:18.037 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 22:58:18.578 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3755 ms
+2025-05-17 22:58:18.801 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 23:02:52.659 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 23:02:53.680 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 23:02:53.826 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 135 ms. Found 5 JDBC repository interfaces.
+2025-05-17 23:02:56.099 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 23:02:56.650 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3981 ms
+2025-05-17 23:02:56.827 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 23:04:51.223 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 23:04:52.044 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 23:04:52.190 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 131 ms. Found 5 JDBC repository interfaces.
+2025-05-17 23:04:54.286 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 23:04:54.803 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3568 ms
+2025-05-17 23:04:54.899 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 23:06:17.068 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 23:06:17.994 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 23:06:18.139 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 136 ms. Found 5 JDBC repository interfaces.
+2025-05-17 23:06:20.284 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 23:06:20.793 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3708 ms
+2025-05-17 23:06:20.879 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 23:14:08.739 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 23:14:09.609 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 23:14:09.755 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 135 ms. Found 5 JDBC repository interfaces.
+2025-05-17 23:14:12.215 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 23:14:12.954 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4197 ms
+2025-05-17 23:14:13.047 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 23:19:42.367 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 23:19:43.225 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 23:19:43.364 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 128 ms. Found 5 JDBC repository interfaces.
+2025-05-17 23:19:45.650 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 23:19:46.202 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3820 ms
+2025-05-17 23:19:46.305 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 23:20:48.620 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 23:20:49.519 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 23:20:49.664 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 135 ms. Found 5 JDBC repository interfaces.
+2025-05-17 23:20:52.079 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 23:20:52.742 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4108 ms
+2025-05-17 23:20:52.873 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-17 23:43:25.143 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-17 23:43:26.200 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-17 23:43:26.397 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 184 ms. Found 5 JDBC repository interfaces.
+2025-05-17 23:43:28.705 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-17 23:43:29.350 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4189 ms
+2025-05-17 23:43:29.481 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-18 00:52:58.675 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 00:52:59.109 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 00:52:59.181 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 5 JDBC repository interfaces.
+2025-05-18 00:53:00.287 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 00:53:00.590 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1907 ms
+2025-05-18 00:53:00.700 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 01:14:23.020 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 01:14:23.577 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 01:14:23.679 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 95 ms. Found 5 JDBC repository interfaces.
+2025-05-18 01:14:25.036 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 01:14:25.294 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2260 ms
+2025-05-18 01:14:25.399 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081

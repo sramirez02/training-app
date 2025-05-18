@@ -1,7 +1,5 @@
 package com.tuempresa.entity;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 

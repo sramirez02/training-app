@@ -2,7 +2,6 @@ package com.tuempresa;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
-import org.apache.catalina.servlets.DefaultServlet;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -18,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TrainingAppApplication {
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8080);
+        tomcat.setPort(8081);
         
         Context ctx = tomcat.addContext("", null);
         
