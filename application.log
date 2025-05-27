@@ -8179,3 +8179,234 @@ Caused by: java.lang.NoSuchMethodError: 'boolean org.springframework.beans.facto
 2025-05-18 01:14:25.036 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
 2025-05-18 01:14:25.294 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2260 ms
 2025-05-18 01:14:25.399 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 02:31:07.651 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 02:31:08.160 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 02:31:08.246 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 5 JDBC repository interfaces.
+2025-05-18 02:31:09.443 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 02:31:09.777 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2113 ms
+2025-05-18 02:31:09.876 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 02:42:07.268 [http-nio-8081-exec-6] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 02:42:58.491 [http-nio-8081-exec-9] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 02:45:41.714 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 02:45:42.150 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 02:45:42.224 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 5 JDBC repository interfaces.
+2025-05-18 02:45:43.366 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 02:45:43.702 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1981 ms
+2025-05-18 02:45:43.806 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 02:46:52.469 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 02:46:52.937 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 02:46:53.011 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 5 JDBC repository interfaces.
+2025-05-18 02:46:54.143 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 02:46:54.463 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1987 ms
+2025-05-18 02:46:54.509 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 02:47:22.051 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 02:47:22.488 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 02:47:22.560 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 5 JDBC repository interfaces.
+2025-05-18 02:47:23.789 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 02:47:24.071 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2011 ms
+2025-05-18 02:47:24.113 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 02:49:24.550 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 02:49:25.038 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 02:49:25.112 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 69 ms. Found 5 JDBC repository interfaces.
+2025-05-18 02:49:26.237 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 02:49:26.558 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2001 ms
+2025-05-18 02:49:26.656 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 02:49:47.872 [http-nio-8081-exec-3] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 02:54:29.024 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 02:54:29.456 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 02:54:29.529 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 5 JDBC repository interfaces.
+2025-05-18 02:54:30.681 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 02:54:30.950 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1918 ms
+2025-05-18 02:54:31.060 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 02:54:43.431 [http-nio-8081-exec-4] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 17:54:25.880 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 17:54:26.520 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 17:54:26.622 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 95 ms. Found 5 JDBC repository interfaces.
+2025-05-18 17:54:28.484 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 17:54:28.884 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2993 ms
+2025-05-18 17:54:29.043 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 17:54:45.071 [http-nio-8081-exec-3] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 18:19:38.226 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 18:19:38.764 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 18:19:38.855 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 5 JDBC repository interfaces.
+2025-05-18 18:19:40.510 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 18:19:40.838 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2598 ms
+2025-05-18 18:19:40.963 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 18:22:27.153 [http-nio-8081-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 18:46:39.132 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 18:46:39.662 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 18:46:39.748 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 5 JDBC repository interfaces.
+2025-05-18 18:46:41.156 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 18:46:41.540 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2395 ms
+2025-05-18 18:46:41.594 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 18:47:51.953 [http-nio-8081-exec-1] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 18:54:01.683 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 18:54:02.203 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 18:54:02.297 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 86 ms. Found 5 JDBC repository interfaces.
+2025-05-18 18:54:03.783 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 18:54:04.105 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2406 ms
+2025-05-18 18:54:04.245 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 18:54:31.823 [http-nio-8081-exec-7] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 19:57:54.970 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 19:57:55.502 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 19:57:55.593 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 5 JDBC repository interfaces.
+2025-05-18 19:57:56.922 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 19:57:57.275 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2291 ms
+2025-05-18 19:57:57.336 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 19:58:19.910 [http-nio-8081-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 20:00:31.066 [http-nio-8081-exec-3] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 20:00:40.083 [http-nio-8081-exec-8] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 20:06:42.673 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-18 20:06:43.460 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-18 20:06:43.579 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 110 ms. Found 5 JDBC repository interfaces.
+2025-05-18 20:06:45.612 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-18 20:06:46.165 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3478 ms
+2025-05-18 20:06:46.602 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-18 20:07:14.875 [http-nio-8081-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 20:07:22.592 [http-nio-8081-exec-5] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-18 22:49:50.339 [main] WARN  com.tuempresa.service.TraineeService - Trainee is already active.
+2025-05-18 22:49:50.361 [main] INFO  com.tuempresa.service.TraineeService - Trainee eliminado: john.doe
+2025-05-18 22:49:50.390 [main] INFO  com.tuempresa.service.TraineeService - Trainee activated successfully.
+2025-05-18 23:01:40.286 [main] INFO  com.tuempresa.service.TrainerService - Trainer activated successfully.
+2025-05-18 23:02:41.411 [main] INFO  com.tuempresa.service.TrainerService - Trainer activated successfully.
+2025-05-19 22:12:08.008 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-19 22:12:09.201 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-19 22:12:09.394 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 180 ms. Found 5 JDBC repository interfaces.
+2025-05-19 22:12:12.099 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-19 22:12:12.588 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4565 ms
+2025-05-19 22:12:12.775 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-19 22:12:46.802 [http-nio-8081-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-19 22:27:11.763 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-19 22:27:12.295 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-19 22:27:12.385 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 5 JDBC repository interfaces.
+2025-05-19 22:27:13.725 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-19 22:27:14.112 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2334 ms
+2025-05-19 22:27:14.243 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-19 22:27:21.780 [http-nio-8081-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-19 22:42:34.230 [http-nio-8081-exec-5] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-23 00:33:45.326 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-23 00:33:45.919 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 00:33:46.023 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 91 ms. Found 5 JDBC repository interfaces.
+2025-05-23 00:33:47.575 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-23 00:33:48.002 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2666 ms
+2025-05-23 00:33:48.126 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-23 00:35:38.859 [http-nio-8081-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-23 00:35:54.078 [http-nio-8081-exec-1] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-23 00:36:49.847 [http-nio-8081-exec-4] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-23 00:37:07.584 [http-nio-8081-exec-8] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-23 00:37:42.744 [http-nio-8081-exec-7] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.ArrayList` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('jose.parada')]
+2025-05-23 00:54:21.264 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-23 00:54:21.769 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 00:54:21.855 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 5 JDBC repository interfaces.
+2025-05-23 00:54:23.195 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-23 00:54:23.514 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2241 ms
+2025-05-23 00:54:23.566 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-23 01:03:59.259 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-23 01:03:59.791 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 01:03:59.876 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 5 JDBC repository interfaces.
+2025-05-23 01:04:01.216 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-23 01:04:01.567 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2294 ms
+2025-05-23 01:04:01.689 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8080
+2025-05-23 01:04:23.770 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-23 01:04:24.269 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 01:04:24.358 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 81 ms. Found 5 JDBC repository interfaces.
+2025-05-23 01:04:25.712 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-23 01:04:26.076 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2298 ms
+2025-05-23 01:04:26.197 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-23 01:17:01.760 [http-nio-8081-exec-4] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2025-05-23 02:33:07.592 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-23 02:33:08.189 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 02:33:08.277 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 5 JDBC repository interfaces.
+2025-05-23 02:33:09.794 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-23 02:33:10.181 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2575 ms
+2025-05-23 02:33:10.311 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-23 02:34:50.440 [http-nio-8080-exec-3] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-05-23 02:34:59.351 [http-nio-8081-exec-1] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-05-24 07:31:57.110 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-24 07:31:57.892 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-24 07:31:58.007 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 5 JDBC repository interfaces.
+2025-05-24 07:31:59.746 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-24 07:32:00.196 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3073 ms
+2025-05-24 07:32:00.355 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-24 16:36:29.489 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-24 16:36:30.127 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-24 16:36:30.232 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 97 ms. Found 5 JDBC repository interfaces.
+2025-05-24 16:36:31.656 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-24 16:36:31.981 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2479 ms
+2025-05-24 16:36:32.125 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 01:09:15.824 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 01:09:16.304 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 01:09:16.385 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 5 JDBC repository interfaces.
+2025-05-25 01:09:17.610 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 01:09:17.968 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2129 ms
+2025-05-25 01:09:18.130 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 01:50:02.043 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 01:50:02.504 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 01:50:02.579 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 5 JDBC repository interfaces.
+2025-05-25 01:50:03.742 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 01:50:04.073 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2022 ms
+2025-05-25 01:50:04.179 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 01:50:10.877 [http-nio-8081-exec-1] INFO  com.tuempresa.service.TraineeService - Trainee activated successfully.
+2025-05-25 02:40:18.068 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 02:40:18.640 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 02:40:18.751 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 102 ms. Found 5 JDBC repository interfaces.
+2025-05-25 02:40:20.224 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 02:40:20.562 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2485 ms
+2025-05-25 02:40:20.678 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 02:42:05.406 [http-nio-8081-exec-2] INFO  com.tuempresa.service.TrainerService - Trainer activated successfully.
+2025-05-25 21:25:28.412 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 21:25:30.352 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 21:25:30.652 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 287 ms. Found 5 JDBC repository interfaces.
+2025-05-25 21:25:35.105 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 21:25:36.177 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7736 ms
+2025-05-25 21:25:36.552 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 21:39:36.702 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 21:39:37.250 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 21:39:37.345 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 88 ms. Found 5 JDBC repository interfaces.
+2025-05-25 21:39:38.912 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 21:39:39.267 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2555 ms
+2025-05-25 21:39:39.388 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 21:51:18.714 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 21:51:19.306 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 21:51:19.434 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 119 ms. Found 5 JDBC repository interfaces.
+2025-05-25 21:51:21.041 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 21:51:21.647 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2917 ms
+2025-05-25 21:51:21.848 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 21:53:38.897 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 21:53:39.472 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 21:53:39.572 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 92 ms. Found 5 JDBC repository interfaces.
+2025-05-25 21:53:41.153 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 21:53:41.531 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2624 ms
+2025-05-25 21:53:41.674 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 21:53:58.121 [http-nio-8081-exec-2] INFO  com.tuempresa.service.TraineeService - Trainees username [jose.parada]
+2025-05-25 21:54:56.939 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 21:54:57.503 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 21:54:57.598 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 88 ms. Found 5 JDBC repository interfaces.
+2025-05-25 21:54:59.134 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 21:54:59.525 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2578 ms
+2025-05-25 21:54:59.668 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 21:57:11.636 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 21:57:12.782 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 21:57:13.169 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 370 ms. Found 5 JDBC repository interfaces.
+2025-05-25 21:57:16.096 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 21:57:16.906 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5256 ms
+2025-05-25 21:57:17.180 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 21:57:51.840 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcher'
+2025-05-25 21:57:53.241 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-25 21:57:53.450 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 191 ms. Found 5 JDBC repository interfaces.
+2025-05-25 21:57:56.646 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2025-05-25 21:57:57.451 [main] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5570 ms
+2025-05-25 21:57:58.028 [main] INFO  com.tuempresa.TrainingAppApplication - Aplicación iniciada en http://localhost:8081
+2025-05-25 21:58:04.871 [http-nio-8081-exec-5] INFO  com.tuempresa.service.TraineeService - Trainer Trainer(id=5, userId=8, trainingTypeId=2)
+2025-05-25 21:58:16.845 [http-nio-8081-exec-9] INFO  com.tuempresa.service.TraineeService - Trainer Trainer(id=5, userId=8, trainingTypeId=2)
+2025-05-25 21:58:18.682 [http-nio-8081-exec-10] INFO  com.tuempresa.service.TraineeService - Trainer Trainer(id=5, userId=8, trainingTypeId=2)
+2025-05-25 22:01:36.083 [http-nio-8081-exec-8] INFO  com.tuempresa.service.TraineeService - Trainer Trainer(id=5, userId=8, trainingTypeId=2)
+2025-05-25 22:02:10.535 [http-nio-8081-exec-6] INFO  com.tuempresa.service.TraineeService - Trainer Trainer(id=5, userId=8, trainingTypeId=2)
+2025-05-27 14:24:12.286 [main] INFO  com.tuempresa.service.TraineeService - Trainee eliminado: john.doe
+2025-05-27 14:24:12.368 [main] INFO  com.tuempresa.service.TraineeService - Trainee deactivated successfully.
+2025-05-27 14:24:12.453 [main] INFO  com.tuempresa.service.TraineeService - Trainee activated successfully.
+2025-05-27 14:37:06.059 [main] INFO  com.tuempresa.service.TraineeService - Trainee eliminado: john.doe
+2025-05-27 14:37:06.125 [main] INFO  com.tuempresa.service.TraineeService - Trainee deactivated successfully.
+2025-05-27 14:37:06.183 [main] INFO  com.tuempresa.service.TraineeService - Trainee activated successfully.
+2025-05-27 14:48:55.915 [main] INFO  com.tuempresa.service.TrainerService - Trainer activated successfully.
+2025-05-27 14:51:38.182 [main] INFO  com.tuempresa.service.TrainerService - Trainer activated successfully.

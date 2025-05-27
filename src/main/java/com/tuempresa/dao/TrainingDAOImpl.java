@@ -167,7 +167,7 @@ public class TrainingDAOImpl implements TrainingDAO {
             ps.setLong(6, training.getTrainingTypeId());
 
             ps.executeUpdate();
-            System.out.println("✅ Entrenamiento agregado con éxito");
+            System.out.println("Entrenamiento agregado con éxito");
 
         } catch (SQLException e) {
             e.printStackTrace();

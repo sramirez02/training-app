@@ -37,18 +37,6 @@ public class UserService {
     }
     
     
-    //PREGUNTAR IRWIN 
-//    public boolean authenticate(String username, String password) {
-//    	Optional<User> userOpt = userDAO.findByUsername(username);
-//        if (userOpt.isEmpty()) {
-//            System.out.println("Usuario no encontrado: " + username); // Log
-//            return false;
-//        }
-//        User user = userOpt.get();
-//        boolean isMatch = user.getPassword().equals(password);
-//        System.out.println("Contraseña coincide?: " + isMatch); // Log
-//        return isMatch;
-//    }
 
     public boolean changePassword(String username, String oldPassword, String newPassword) {
         Optional<User> userOpt = userDAO.findByUsername(username);

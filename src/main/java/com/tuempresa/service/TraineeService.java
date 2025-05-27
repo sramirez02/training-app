@@ -19,6 +19,7 @@ import com.tuempresa.dto.CreateTraineeRequestDto;
 import com.tuempresa.dto.TraineeProfileResponseDto;
 import com.tuempresa.dto.TrainerInfoDto;
 import com.tuempresa.dto.UpdateTraineeRequestDto;
+import com.tuempresa.dto.UpdateTraineeTrainersRequest;
 import com.tuempresa.entity.Trainee;
 import com.tuempresa.entity.TraineeTrainer;
 import com.tuempresa.entity.Trainer;
@@ -30,6 +31,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class TraineeService {
+	
+	
 	 @Autowired
 	    private TraineeDAO traineeDAO;
 
@@ -70,7 +73,7 @@ public class TraineeService {
 		return user;
 	}
     
-    // agrego aqui lo nuevo
+   
     
     public CreateGymUserResponseDto createUserTrainee(CreateTraineeRequestDto traineeRequestDto) {
 		User userToSave = new User(traineeRequestDto.getFirstName(), traineeRequestDto.getLastName(), true);
@@ -87,7 +90,7 @@ public class TraineeService {
         return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
     }
     
-        //hasta aqui
+     
     
     public TraineeProfileResponseDto getTraineeProfile(String username) {
         User user = userService.getByUsername(username);
@@ -108,7 +111,7 @@ public class TraineeService {
             .build();
     }
 
-    private List<TrainerInfoDto> getTrainersForTrainee(Long traineeId) {
+   public List<TrainerInfoDto> getTrainersForTrainee(Long traineeId) {
         List<TraineeTrainer> relations = traineeTrainerDAO.findByTraineeId(traineeId);
         return relations.stream()
             .map(relation -> {
@@ -129,23 +132,21 @@ public class TraineeService {
     }
 
     
-    //Nuevo Update
+   
     
     public TraineeProfileResponseDto updateTraineeProfile(UpdateTraineeRequestDto request) {
-        // 1. Buscar al usuario por username
+        
         User user = userService.getByUsername(request.getUsername());
         if (user == null) {
             throw new RuntimeException("Usuario no encontrado: " + request.getUsername());
         }
 
-        // 2. Actualizar datos del User
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setIsActive(request.isActive());
 
         userService.save(user);
 
-        // 3. Actualizar datos del Trainee
         Trainee trainee = traineeDAO.findByUserId(user.getId());
         if (request.getDateOfBirth() != null) {
             trainee.setDateOfBirth(request.getDateOfBirth());
@@ -155,7 +156,6 @@ public class TraineeService {
         }
         traineeDAO.save(trainee);
 
-        // 4. Retornar el perfil actualizado (usando el método existente)
         return getTraineeProfile(user.getUsername());
     }
     
@@ -168,14 +168,50 @@ public class TraineeService {
 
         Trainee trainee = traineeDAO.findByUserId(user.getId());
         if (trainee != null) {
-            traineeDAO.delete(trainee); // Elimina el Trainee
+            traineeDAO.delete(trainee); 
             log.info("Trainee eliminado: {}", username);
         } else {
             throw new RuntimeException("Trainee no encontrado para el usuario: " + username);
         }
     }
-
     
+    public List<TrainerInfoDto> updateTraineeTrainers(UpdateTraineeTrainersRequest request) {
+        
+        Trainee trainee = traineeDAO.findByUserUsername(request.getTraineeUsername())
+                .orElseThrow(() -> new RuntimeException("Trainee not found"));
+    
+        
+        List<TraineeTrainer> newRelations = request.getTrainersUsernames().stream()
+                .map(trainerUsername -> {
+                    Trainer trainer = trainerDAO.findByUserUsername(trainerUsername)
+                    		.orElseThrow(() -> new RuntimeException("Trainer not found: " + trainerUsername));
+                    
+                    TraineeTrainer relation = new TraineeTrainer();
+                    relation.setTraineeId(trainee.getId());
+                    relation.setTrainerId(trainer.getId());
+                    return relation;
+                })
+                .collect(Collectors.toList());
+        
+        traineeTrainerDAO.saveAll(newRelations);
+        
+        return newRelations.stream()
+                .map(relation -> {
+                    Trainer trainer = trainerDAO.findById(relation.getTrainerId())
+                            .orElseThrow(() -> new RuntimeException("Trainer not found"));
+                    User user = userService.getUserById(trainer.getUserId());
+                    TrainingType specialization = trainingTypeDAO.findById(trainer.getTrainingTypeId())
+                            .orElseThrow(() -> new RuntimeException("Training type not found"));
+                    
+                    return TrainerInfoDto.builder()
+                            .username(user.getUsername())
+                            .firstName(user.getFirstName())
+                            .lastName(user.getLastName())
+                            .specialization(specialization)
+                            .build();
+                })
+                .collect(Collectors.toList());
+    }
 	
 	public void toggleTraineeStatus(String username, boolean activate) {
 	    Optional<User> userOpt = userService.findByUsername(username);
@@ -198,6 +234,38 @@ public class TraineeService {
 	    }
 	}
 
+
+	public Long getTraineeIdByUsername(String username) {
+	    User user = userService.getByUsername(username);
+	    if (user == null) {
+	        throw new RuntimeException("Usuario no encontrado: " + username);
+	    }
+	    Trainee trainee = traineeDAO.findByUserId(user.getId());
+	    if (trainee == null) {
+	        throw new RuntimeException("Trainee no encontrado para el usuario: " + username);
+	    }
+	    return trainee.getId();
+	} 
+	
+
+	
+	public void toggleTraineeStatus1(String username, boolean activate) {
+	    User user = userService.getByUsername(username);
+	    if (user == null) {
+	        throw new RuntimeException("Trainee not found with username: " + username);
+	    }
+	    
+	    if (user.getIsActive() == activate) {
+	        log.warn("Trainee is already {}", activate ? "active" : "inactive");
+	        return;
+	    }
+	    
+	    user.setIsActive(activate);
+	    userService.save(user);
+	    log.info("Trainee {} successfully {}", username, activate ? "activated" : "deactivated");
+	}
+	
+	
     
     
     public Trainee createTrainee(Trainee trainee) {
@@ -217,26 +285,6 @@ public class TraineeService {
         return traineeDAO.findByUserId(userId);
     }
 
-    
-    
-//OLD DELETE
-    
-//    public void deleteTraineeByUsername(String username) {
-//        
-//        User user = userService.getByUsername(username);
-//        if (user != null) {
-//           
-//            Trainee trainee = this.getByUserId(user.getId());
-//            if (trainee != null) {
-//                
-//                traineeDAO.delete(trainee);
-//                log.info("Trainee profile and related trainings deleted successfully for username: {}", username);
-//            } else {
-//                log.warn("Trainee not found for username: {}", username);
-//            }
-//        } else {
-//            log.warn("User not found with username: {}", username);
-//        }
-//    }
 
+    
 }

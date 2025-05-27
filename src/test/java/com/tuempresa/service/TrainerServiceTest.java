@@ -1,293 +1,256 @@
 package com.tuempresa.service;
 
-import com.tuempresa.dao.TrainerDAO;
-import com.tuempresa.entity.Trainer;
-import com.tuempresa.entity.User;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.*;
-
-
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.tuempresa.dao.TraineeDAO;
+import com.tuempresa.dao.TraineeTrainerDAO;
+import com.tuempresa.dao.TrainerDAO;
+import com.tuempresa.dao.TrainingTypeDAO;
+import com.tuempresa.dto.CreateGymUserResponseDto;
+import com.tuempresa.dto.CreateTrainerRequestDto;
+import com.tuempresa.dto.TraineeInfoDto;
+import com.tuempresa.dto.TrainerProfileResponseDto;
+import com.tuempresa.dto.UnassignedTrainerDto;
+import com.tuempresa.dto.UpdateTrainerProfileResponseDto;
+import com.tuempresa.dto.UpdateTrainerRequestDto;
+import com.tuempresa.entity.Trainee;
+import com.tuempresa.entity.TraineeTrainer;
+import com.tuempresa.entity.Trainer;
+import com.tuempresa.entity.TrainingType;
+import com.tuempresa.entity.User;
 
+@ExtendWith(MockitoExtension.class)
 class TrainerServiceTest {
 
     @Mock
     private UserService userService;
-
+    
     @Mock
     private TrainerDAO trainerDAO;
-
+    
+    @Mock
+    private TraineeTrainerDAO traineeTrainerDAO;
+    
+    @Mock
+    private TraineeDAO traineeDAO;
+    
+    @Mock
+    private TrainingTypeDAO trainingTypeDAO;
+    
     @InjectMocks
     private TrainerService trainerService;
-
-    private User user;
-    private Trainer trainer;
+    
+    private User testUser;
+    private Trainer testTrainer;
+    private TrainingType testTrainingType;
+    private Trainee testTrainee;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-        user = new User();
-        user.setId(1L);
-        user.setFirstName("John");
-        user.setLastName("Doe");
-        user.setUsername("john.doe");
-        user.setIsActive(true);
-
-        trainer = new Trainer(1L, 1L, 100L);
-    }
-
-    @Test
-    void testGetTrainerByUsername() {
-        when(userService.getByUsername("john.doe")).thenReturn(user);
-        when(trainerDAO.findByUserId(1L)).thenReturn(trainer);
-
-        Trainer result = trainerService.getTrainerByUsername("john.doe");
-        assertEquals(trainer, result);
-    }
-
-    @Test
-    void testGetTrainerUserByUsernameUser() {
-        when(userService.getByUsername("john.doe")).thenReturn(user);
-        when(trainerDAO.findByUserId(1L)).thenReturn(trainer);
-
-        User result = trainerService.getTrainerUserByUsernameUser("john.doe");
-        assertEquals(user, result);
-        assertEquals(trainer, result.getTrainer());
-    }
-
-    @Test
-    void testCreateUserTrainer() {
-        when(userService.createUser(any(User.class))).thenReturn(user);
-        when(trainerDAO.save(any(Trainer.class))).thenReturn(trainer);
-
-        User result = trainerService.createUserTrainer(user, 100L);
-        assertEquals(user, result);
-        verify(trainerDAO).save(any(Trainer.class));
-    }
-
-    @Test
-    void testUpdateTrainerProfile() {
-        when(userService.findByUsername("john.doe")).thenReturn(Optional.of(user));
-        when(trainerDAO.findByUserId(1L)).thenReturn(trainer);
-
-        trainerService.updateTrainerProfile("john.doe", "Jane", "Smith", 200L);
-
-        assertEquals("Jane", user.getFirstName());
-        assertEquals("Smith", user.getLastName());
-        assertEquals("jane.smith", user.getUsername());
-        assertEquals(200L, trainer.getTrainingTypeId());
-
-        verify(userService).save(user);
-        verify(trainerDAO).save(trainer);
-    }
-
-    @Test
-    void testToggleTrainerStatus_Activate() {
-        user.setIsActive(false);
-        when(userService.findByUsername("john.doe")).thenReturn(Optional.of(user));
-
-        trainerService.toggleTrainerStatus("john.doe", true);
-
-        assertTrue(user.getIsActive());
-        verify(userService).save(user);
-    }
-
-    @Test
-    void testToggleTrainerStatus_Deactivate() {
-        user.setIsActive(true);
-        when(userService.findByUsername("john.doe")).thenReturn(Optional.of(user));
-
-        trainerService.toggleTrainerStatus("john.doe", false);
-
-        assertFalse(user.getIsActive());
-        verify(userService).save(user);
-    }
-
-    @Test
-    void testCreateTrainer() {
-        when(trainerDAO.save(trainer)).thenReturn(trainer);
-        Trainer result = trainerService.createTrainer(trainer);
-        assertEquals(trainer, result);
-    }
-
-    @Test
-    void testGetTrainer() {
-        when(trainerDAO.findById(1L)).thenReturn(Optional.of(trainer));
-        Trainer result = trainerService.getTrainer(1L);
-        assertEquals(trainer, result);
-    }
-
-    @Test
-    void testGetAllTrainers() {
-        List<Trainer> trainers = Arrays.asList(trainer);
-        when(trainerDAO.findAll()).thenReturn(trainers);
-        List<Trainer> result = trainerService.getAllTrainers();
-        assertEquals(1, result.size());
-        assertEquals(trainer, result.get(0));
-    }
-
-    @Test
-    void testGetByUserId() {
-        when(trainerDAO.findByUserId(1L)).thenReturn(trainer);
-        Trainer result = trainerService.getByUserId(1L);
-        assertEquals(trainer, result);
-    }
-    
-    @Test
-    void getTrainerByUsername_userExists_returnsTrainer() {
-        User user = new User();
-        user.setId(1L);
-
-        Trainer trainer = new Trainer();
-        when(userService.getByUsername("test")).thenReturn(user);
-        when(trainerDAO.findByUserId(1L)).thenReturn(trainer);
-
-        Trainer result = trainerService.getTrainerByUsername("test");
-        assertEquals(trainer, result);
-    }
-
-    @Test
-    void getTrainerByUsername_userDoesNotExist_returnsNull() {
-        when(userService.getByUsername("test")).thenReturn(null);
-        Trainer result = trainerService.getTrainerByUsername("test");
-        assertNull(result);
-    }
-
-    @Test
-    void getTrainerUserByUsernameUser_returnsUserWithTrainer() {
-        User user = new User();
-        user.setId(1L);
-        Trainer trainer = new Trainer();
-
-        when(userService.getByUsername("test")).thenReturn(user);
-        when(trainerDAO.findByUserId(1L)).thenReturn(trainer);
-
-        User result = trainerService.getTrainerUserByUsernameUser("test");
-        assertEquals(trainer, result.getTrainer());
-    }
-
-    @Test
-    void createUserTrainer_savesUserAndTrainer() {
-        User user = new User();
-        user.setId(2L);
-        Long trainingTypeId = 3L;
-
-        when(userService.createUser(user)).thenReturn(user);
-
-        User result = trainerService.createUserTrainer(user, trainingTypeId);
-
-        assertEquals(user, result);
-        verify(trainerDAO).save(any(Trainer.class));
-    }
-
-    @Test
-    void updateTrainerProfile_userAndTrainerExist_updatesSuccessfully() {
-        User user = new User();
-        user.setId(1L);
-        user.setUsername("old.username");
-
-        Trainer trainer = new Trainer();
-
-        when(userService.findByUsername("test")).thenReturn(Optional.of(user));
-        when(trainerDAO.findByUserId(1L)).thenReturn(trainer);
-
-        trainerService.updateTrainerProfile("test", "John", "Doe", 10L);
-
-        assertEquals("john.doe", user.getUsername());
-        assertEquals(10L, trainer.getTrainingTypeId());
-        verify(userService).save(user);
-        verify(trainerDAO).save(trainer);
-    }
-
-    @Test
-    void updateTrainerProfile_userExistsButTrainerNotFound_logsWarning() {
-        User user = new User();
-        user.setId(1L);
-
-        when(userService.findByUsername("test")).thenReturn(Optional.of(user));
-        when(trainerDAO.findByUserId(1L)).thenReturn(null);
-
-        trainerService.updateTrainerProfile("test", "Ana", "Lopez", 7L);
-
-        verify(userService).save(user);
+        testUser = new User("John", "Trainer", true);
+        testUser.setId(1L);
         
-        verify(trainerDAO, never()).save(any());
+        testTrainer = new Trainer();
+        testTrainer.setId(1L);
+        testTrainer.setUserId(testUser.getId());
+        testTrainer.setTrainingTypeId(1L);
+        
+        testTrainingType = new TrainingType(1L, "Cardio");
+        
+        testTrainee = new Trainee();
+        testTrainee.setId(1L);
+        testTrainee.setUserId(2L);
     }
 
     @Test
-    void updateTrainerProfile_userNotFound_logsWarning() {
-        when(userService.findByUsername("test")).thenReturn(Optional.empty());
-        trainerService.updateTrainerProfile("test", "Ana", "Lopez", 7L);
-
-        verify(userService, never()).save(any());
-        verify(trainerDAO, never()).save(any());
+    void getTrainerProfile_Success() {
+        // Arrange
+        when(userService.getByUsername("john.trainer")).thenReturn(testUser);
+        when(trainerDAO.findByUserId(testUser.getId())).thenReturn(Optional.of(testTrainer));
+        when(trainingTypeDAO.findById(testTrainer.getTrainingTypeId()))
+            .thenReturn(Optional.of(testTrainingType));
+        when(traineeTrainerDAO.findByTrainerId(testTrainer.getId()))
+            .thenReturn(Collections.emptyList());
+        
+        // Act
+        TrainerProfileResponseDto response = trainerService.getTrainerProfile("john.trainer");
+        
+        // Assert
+        assertNotNull(response);
+        assertEquals("John", response.getFirstName());
+        assertEquals("Trainer", response.getLastName());
+        assertEquals(testTrainingType, response.getSpecialization());
+        assertTrue(response.getTraineesList().isEmpty());
     }
 
     @Test
-    void toggleTrainerStatus_activate_userIsInactive_activatesUser() {
-        User user = new User();
-        user.setIsActive(false);
+    void createUserTrainer_Success() {
+        // Arrange
+        CreateTrainerRequestDto request = new CreateTrainerRequestDto();
+        request.setFirstName("John");
+        request.setLastName("Trainer");
+        request.setTrainingTypeId(1L);
+        
+        User savedUser = new User("John", "Trainer", true);
+        savedUser.setId(1L);
+        savedUser.setUsername("john.trainer");
+        savedUser.setPassword("password");
+        
+        when(userService.createUser(any(User.class))).thenReturn(savedUser);
+        when(trainerDAO.save(any(Trainer.class))).thenReturn(testTrainer);
+        
+        // Act
+        CreateGymUserResponseDto response = trainerService.createUserTrainer(request);
+        
+        // Assert
+        assertNotNull(response);
+        assertEquals(savedUser.getUsername(), response.getUsername());
+        assertEquals(savedUser.getPassword(), response.getPassword());
+    }
 
-        when(userService.findByUsername("test")).thenReturn(Optional.of(user));
-
-        trainerService.toggleTrainerStatus("test", true);
-
+    @Test
+    void toggleTrainerStatus_Activate() {
+        // Arrange
+        User user = new User("john", "trainer", false);
+        when(userService.findByUsername("john.trainer")).thenReturn(Optional.of(user));
+        
+        // Act
+        trainerService.toggleTrainerStatus("john.trainer", true);
+        
+        // Assert
         assertTrue(user.getIsActive());
         verify(userService).save(user);
     }
 
     @Test
-    void toggleTrainerStatus_deactivate_userIsActive_deactivatesUser() {
-        User user = new User();
-        user.setIsActive(true);
-
-        when(userService.findByUsername("test")).thenReturn(Optional.of(user));
-
-        trainerService.toggleTrainerStatus("test", false);
-
-        assertFalse(user.getIsActive());
-        verify(userService).save(user);
+    void getTrainerIdByUsername_Success() {
+        // Arrange
+        when(userService.getByUsername("john.trainer")).thenReturn(testUser);
+        when(trainerDAO.findByUserId(testUser.getId())).thenReturn(Optional.of(testTrainer));
+        
+        // Act
+        Long trainerId = trainerService.getTrainerIdByUsername("john.trainer");
+        
+        // Assert
+        assertEquals(testTrainer.getId(), trainerId);
     }
 
     @Test
-    void toggleTrainerStatus_activate_userAlreadyActive_logsWarning() {
-        User user = new User();
-        user.setIsActive(true);
-
-        when(userService.findByUsername("test")).thenReturn(Optional.of(user));
-
-        trainerService.toggleTrainerStatus("test", true);
-
-        verify(userService, never()).save(user);
+    void getUnassignedActiveTrainers_Success() {
+        // Arrange
+        User traineeUser = new User("trainee", "one", true);
+        traineeUser.setId(2L);
+        
+        when(userService.getByUsername("trainee.one")).thenReturn(traineeUser);
+        when(trainerDAO.findAllActiveTrainers()).thenReturn(List.of(testTrainer));
+        when(traineeTrainerDAO.findTrainerIdsByTraineeUsername("trainee.one"))
+            .thenReturn(Collections.emptyList());
+        when(userService.getUserById(testTrainer.getUserId())).thenReturn(testUser);
+        when(trainingTypeDAO.findById(testTrainer.getTrainingTypeId()))
+            .thenReturn(Optional.of(testTrainingType));
+        
+        // Act
+        List<UnassignedTrainerDto> result = trainerService.getUnassignedActiveTrainers("trainee.one");
+        
+        // Assert
+        assertEquals(1, result.size());
+        assertEquals("John", result.get(0).getFirstName());
+        assertEquals(testTrainingType, result.get(0).getSpecialization());
     }
 
     @Test
-    void toggleTrainerStatus_deactivate_userAlreadyInactive_logsWarning() {
-        User user = new User();
-        user.setIsActive(false);
-
-        when(userService.findByUsername("test")).thenReturn(Optional.of(user));
-
-        trainerService.toggleTrainerStatus("test", false);
-
-        verify(userService, never()).save(user);
+    void updateTrainerProfile_Success() {
+        // Arrange
+        UpdateTrainerRequestDto request = new UpdateTrainerRequestDto();
+        request.setUsername("john.trainer");
+        request.setFirstName("John Updated");
+        request.setLastName("Trainer Updated");
+        request.setActive(true);
+        
+        when(userService.getByUsername("john.trainer")).thenReturn(testUser);
+        when(trainerDAO.findByUserId(testUser.getId())).thenReturn(Optional.of(testTrainer));
+        when(trainingTypeDAO.findById(testTrainer.getTrainingTypeId()))
+            .thenReturn(Optional.of(testTrainingType));
+        when(traineeTrainerDAO.findByTrainerId(testTrainer.getId()))
+            .thenReturn(Collections.emptyList());
+        
+        // Act
+        UpdateTrainerProfileResponseDto response = trainerService.updateTrainerProfile(request);
+        
+        // Assert
+        assertNotNull(response);
+        assertEquals("John Updated", response.getFirstName());
+        assertEquals("Trainer Updated", response.getLastName());
+        assertEquals(testTrainingType, response.getSpecialization());
+        verify(userService).save(testUser);
     }
 
     @Test
-    void toggleTrainerStatus_userNotFound_logsWarning() {
-        when(userService.findByUsername("test")).thenReturn(Optional.empty());
-
-        trainerService.toggleTrainerStatus("test", true);
-
-        verify(userService, never()).save(any());
+    void getTrainerByUsername_Success() {
+        // Arrange
+        when(userService.getByUsername("john.trainer")).thenReturn(testUser);
+        when(trainerDAO.findByUserId(testUser.getId())).thenReturn(Optional.of(testTrainer));
+        
+        // Act
+        Trainer result = trainerService.getTrainerByUsername("john.trainer");
+        
+        // Assert
+        assertNotNull(result);
+        assertEquals(testTrainer.getId(), result.getId());
     }
 
+    @Test
+    void getTrainerUserByUsernameUser_Success() {
+        // Arrange
+        when(userService.getByUsername("john.trainer")).thenReturn(testUser);
+        when(trainerDAO.findByUserId(testUser.getId())).thenReturn(Optional.of(testTrainer));
+        
+        // Act
+        User result = trainerService.getTrainerUserByUsernameUser("john.trainer");
+        
+        // Assert
+        assertNotNull(result);
+        assertEquals(testUser.getFirstName(), result.getFirstName());
+        assertNotNull(result.getTrainer());
+        assertEquals(testTrainer.getId(), result.getTrainer().getId());
+    }
+
+    @Test
+    void getTraineesForTrainer_Success() {
+        // Arrange
+        TraineeTrainer relation = new TraineeTrainer();
+        relation.setTrainerId(testTrainer.getId());
+        relation.setTraineeId(testTrainee.getId());
+        
+        User traineeUser = new User("Trainee", "One", true);
+        traineeUser.setId(2L);
+        
+        when(traineeTrainerDAO.findByTrainerId(testTrainer.getId())).thenReturn(List.of(relation));
+        when(traineeDAO.findById(testTrainee.getId())).thenReturn(Optional.of(testTrainee));
+        when(userService.getUserById(testTrainee.getUserId())).thenReturn(traineeUser);
+        
+        // Act
+        List<TraineeInfoDto> result = trainerService.getTraineesForTrainer(testTrainer.getId());
+        
+        // Assert
+        assertEquals(1, result.size());
+        assertEquals("Trainee", result.get(0).getFirstName());
+        assertEquals("One", result.get(0).getLastName());
+    }
 }

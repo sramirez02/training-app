@@ -25,25 +25,22 @@ import com.tuempresa.entity.Trainer;
 import com.tuempresa.entity.TrainingType;
 import com.tuempresa.entity.User;
 
-
 @Service
 public class TrainerService {
 	private final UserService userService;
 	private final TrainerDAO trainerDAO;
 	private static final Logger log = LoggerFactory.getLogger(TrainerService.class);
-	
-  
-	
-	 @Autowired
-	    private TraineeTrainerDAO traineeTrainerDAO;
-	 
-	 @Autowired
-	    private TraineeDAO traineeDAO; 
 
-	 @Autowired
-	 	private TrainingTypeDAO trainingTypeDAO;
-	
-	
+
+	@Autowired
+	private TraineeTrainerDAO traineeTrainerDAO;
+
+	@Autowired
+	private TraineeDAO traineeDAO;
+
+	@Autowired
+	private TrainingTypeDAO trainingTypeDAO;
+
 	@Autowired
 	public TrainerService(UserService userService, TrainerDAO trainerDAO) {
 		this.userService = userService;
@@ -51,195 +48,153 @@ public class TrainerService {
 	}
 
 	public Trainer getTrainerByUsername(String username) {
-        User user = userService.getByUsername(username);
-        if (user != null) {
-        	return trainerDAO.findByUserId(user.getId()).orElse(null);
-        }
-        return null;
-    }
-	
-	public User getTrainerUserByUsernameUser(String username) {
-	    User user = userService.getByUsername(username);
-	    if (user == null) {
-	        throw new RuntimeException("Usuario no encontrado: " + username);
-	    }
-	    Trainer trainer = this.getByUserId(user.getId()); // ✅ Devuelve Trainer, no Optional
-	    user.setTrainer(trainer); // ✅ Asigna directamente el objeto Trainer
-	    return user; 
+		User user = userService.getByUsername(username);
+		if (user != null) {
+			return trainerDAO.findByUserId(user.getId()).orElse(null);
+		}
+		return null;
 	}
-	
+
+	public User getTrainerUserByUsernameUser(String username) {
+		User user = userService.getByUsername(username);
+		if (user == null) {
+			throw new RuntimeException("Usuario no encontrado: " + username);
+		}
+		Trainer trainer = this.getByUserId(user.getId()); // ✅ Devuelve Trainer, no Optional
+		user.setTrainer(trainer); // ✅ Asigna directamente el objeto Trainer
+		return user;
+	}
+
 	public CreateGymUserResponseDto createUserTrainer(CreateTrainerRequestDto trainerRequestDto) {
 		User userToSave = new User(trainerRequestDto.getFirstName(), trainerRequestDto.getLastName(), true);
-		
-		
-        User savedUser = userService.createUser(userToSave);
-        
-        Trainer trainer = new Trainer();
-        trainer.setUserId(savedUser.getId());
-        trainer.setTrainingTypeId(trainerRequestDto.getTrainingTypeId());
-        trainerDAO.save(trainer);
-        
 
-        return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
+		User savedUser = userService.createUser(userToSave);
+
+		Trainer trainer = new Trainer();
+		trainer.setUserId(savedUser.getId());
+		trainer.setTrainingTypeId(trainerRequestDto.getTrainingTypeId());
+		trainerDAO.save(trainer);
+
+		return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
 	}
+
 	
-	
-	
-	//AQUI PONGO EL GET PROFILE 
-	
+
 	public TrainerProfileResponseDto getTrainerProfile(String username) {
-        
-        User user = userService.getByUsername(username);
-        if (user == null) {
-            throw new RuntimeException("Usuario no encontrado: " + username);
-        }
 
-        Trainer trainer = trainerDAO.findByUserId(user.getId())
-            .orElseThrow(() -> new RuntimeException("Trainer no encontrado"));
+		User user = userService.getByUsername(username);
+		if (user == null) {
+			throw new RuntimeException("Usuario no encontrado: " + username);
+		}
 
-        TrainingType specialization = trainingTypeDAO.findById(trainer.getTrainingTypeId())
-                .orElseThrow(() -> new RuntimeException("Especialización no encontrada"));    
-        
+		Trainer trainer = trainerDAO.findByUserId(user.getId())
+				.orElseThrow(() -> new RuntimeException("Trainer no encontrado"));
 
-        return TrainerProfileResponseDto.builder()
-            .firstName(user.getFirstName())
-            .lastName(user.getLastName())
-            .specialization(specialization)
-            .isActive(user.getIsActive())
-            .traineesList(getTraineesForTrainer(trainer.getId()))
-            .build();
-    }
+		TrainingType specialization = trainingTypeDAO.findById(trainer.getTrainingTypeId())
+				.orElseThrow(() -> new RuntimeException("Especialización no encontrada"));
 
-	private List<TraineeInfoDto> getTraineesForTrainer(Long trainerId) {
-	    return traineeTrainerDAO.findByTrainerId(trainerId).stream()
-	        .map(relation -> {
-	            Trainee trainee = traineeDAO.findById(relation.getTraineeId())
-	                .orElseThrow(() -> new RuntimeException("Trainee no encontrado"));
-	            User traineeUser = userService.getUserById(trainee.getUserId());
-	            
-	            return TraineeInfoDto.builder()
-	                .username(traineeUser.getUsername())
-	                .firstName(traineeUser.getFirstName())
-	                .lastName(traineeUser.getLastName())
-	                .build();
-	        })
-	        .collect(Collectors.toList());
+		return TrainerProfileResponseDto.builder().firstName(user.getFirstName()).lastName(user.getLastName())
+				.specialization(specialization).isActive(user.getIsActive())
+				.traineesList(getTraineesForTrainer(trainer.getId())).build();
 	}
-	
+//AQUI PRIVATE
+	 List<TraineeInfoDto> getTraineesForTrainer(Long trainerId) {
+		return traineeTrainerDAO.findByTrainerId(trainerId).stream().map(relation -> {
+			Trainee trainee = traineeDAO.findById(relation.getTraineeId())
+					.orElseThrow(() -> new RuntimeException("Trainee no encontrado"));
+			User traineeUser = userService.getUserById(trainee.getUserId());
+
+			return TraineeInfoDto.builder().username(traineeUser.getUsername()).firstName(traineeUser.getFirstName())
+					.lastName(traineeUser.getLastName()).build();
+		}).collect(Collectors.toList());
+	}
+
 	public UpdateTrainerProfileResponseDto updateTrainerProfile(UpdateTrainerRequestDto request) {
-		
+
 		User user = userService.getByUsername(request.getUsername());
 		if (user == null) {
 			throw new RuntimeException("Usuario no encontrado: " + request.getUsername());
 		}
-		
+
 		user.setFirstName(request.getFirstName());
 		user.setLastName(request.getLastName());
 		user.setIsActive(request.isActive());
-		
+
 		userService.save(user);
-		
+
 		Trainer trainer = trainerDAO.findByUserId(user.getId())
-		.orElseThrow(() -> new RuntimeException("Trainer not found for user: " + request.getUsername()));
-	
-	
+				.orElseThrow(() -> new RuntimeException("Trainer not found for user: " + request.getUsername()));
+
 		TrainingType specialization = trainingTypeDAO.findById(trainer.getTrainingTypeId())
-	            .orElseThrow(() -> new RuntimeException("Training type not found"));
-	
-		
+				.orElseThrow(() -> new RuntimeException("Training type not found"));
+
 		List<TraineeInfoDto> traineesList = getTraineesForTrainer(trainer.getId());
 
-	    return UpdateTrainerProfileResponseDto.builder()
-	            .username(user.getUsername())
-	            .firstName(user.getFirstName())
-	            .lastName(user.getLastName())
-	            .specialization(specialization)
-	            .isActive(user.getIsActive())
-	            .traineesList(traineesList)
-	            .build();
+		return UpdateTrainerProfileResponseDto.builder().username(user.getUsername()).firstName(user.getFirstName())
+				.lastName(user.getLastName()).specialization(specialization).isActive(user.getIsActive())
+				.traineesList(traineesList).build();
 
 	}
-	
-	
+
 	public List<UnassignedTrainerDto> getUnassignedActiveTrainers(String traineeUsername) {
 		User traineeUser = userService.getByUsername(traineeUsername);
-	    if (traineeUser == null) {
-	        throw new RuntimeException("Trainee not found: " + traineeUsername);
-	    
-	    }
-	    
-	    List<Trainer> activeTrainers = trainerDAO.findAllActiveTrainers(); 
-	    
-	    List<Long> assignedTrainerIds = traineeTrainerDAO.findTrainerIdsByTraineeUsername(traineeUsername);
-	    
-	    return activeTrainers.stream()
-	            .filter(trainer -> !assignedTrainerIds.contains(trainer.getId()))
-	            .map(trainer -> {
-	                User trainerUser = userService.getUserById(trainer.getUserId());
-	 
-	                TrainingType specialization = trainingTypeDAO.findById(trainer.getTrainingTypeId())
-	                        .orElseThrow(() -> new RuntimeException("Training type not found"));
-	                
-	                return UnassignedTrainerDto.builder()
-	                        .username(trainerUser.getUsername())
-	                        .firstName(trainerUser.getFirstName())
-	                        .lastName(trainerUser.getLastName())
-	                        .specialization(specialization)
-	                        .build();
-	            })
-	            .collect(Collectors.toList());
-	                
-	}
+		if (traineeUser == null) {
+			throw new RuntimeException("Trainee not found: " + traineeUsername);
 
-// ANTIGUO UPDATE	
-//	public void updateTrainerProfile(String username, String newFirstName, String newLastName, Long newTrainingTypeId) {
-//	    Optional<User> userOpt = userService.findByUsername(username);
-//
-//	    if (userOpt.isPresent()) {
-//	        User user = userOpt.get();
-//	        user.setFirstName(newFirstName);
-//	        user.setLastName(newLastName);
-//	        user.setUsername(newFirstName.toLowerCase() + "." + newLastName.toLowerCase());
-//
-//	        userService.save(user); 
-//
-//	        
-//	        Trainer trainer = trainerDAO.findByUserId(user.getId()).orElse(null);
-//	        if (trainer != null) {
-//	            trainer.setTrainingTypeId(newTrainingTypeId);
-//	            trainerDAO.save(trainer); 
-//	        } else {
-//	            log.warn("No se encontró el trainer con userId: {}", user.getId());
-//	        }
-//	       
-//	        log.info("Trainer profile updated.");
-//	    } else {
-//	        log.warn("Trainer not found with username: {}", username);
-//	    }
-//	}
+		}
+
+		List<Trainer> activeTrainers = trainerDAO.findAllActiveTrainers();
+
+		List<Long> assignedTrainerIds = traineeTrainerDAO.findTrainerIdsByTraineeUsername(traineeUsername);
+
+		return activeTrainers.stream().filter(trainer -> !assignedTrainerIds.contains(trainer.getId())).map(trainer -> {
+			User trainerUser = userService.getUserById(trainer.getUserId());
+
+			TrainingType specialization = trainingTypeDAO.findById(trainer.getTrainingTypeId())
+					.orElseThrow(() -> new RuntimeException("Training type not found"));
+
+			return UnassignedTrainerDto.builder().username(trainerUser.getUsername())
+					.firstName(trainerUser.getFirstName()).lastName(trainerUser.getLastName())
+					.specialization(specialization).build();
+		}).collect(Collectors.toList());
+
+	}
 
 	public void toggleTrainerStatus(String username, boolean activate) {
-	    Optional<User> userOpt = userService.findByUsername(username);
+		Optional<User> userOpt = userService.findByUsername(username);
 
-	    if (userOpt.isPresent()) {
-	        User user = userOpt.get();
+		if (userOpt.isPresent()) {
+			User user = userOpt.get();
 
-	        if (activate && Boolean.TRUE.equals(user.getIsActive())) {
-	            log.warn("Trainer is already active.");
-	        } else if (!activate && Boolean.FALSE.equals(user.getIsActive())) {
-	            log.warn("Trainer is already inactive.");
-	        } else {
-	            user.setIsActive(activate);
-	            userService.save(user);
-	            log.info("Trainer {} successfully.", activate ? "activated" : "deactivated");
-	        }
+			if (activate && Boolean.TRUE.equals(user.getIsActive())) {
+				log.warn("Trainer is already active.");
+			} else if (!activate && Boolean.FALSE.equals(user.getIsActive())) {
+				log.warn("Trainer is already inactive.");
+			} else {
+				user.setIsActive(activate);
+				userService.save(user);
+				log.info("Trainer {} successfully.", activate ? "activated" : "deactivated");
+			}
 
-	    } else {
-	        log.warn("Trainer not found with username: {}", username);
-	    }
+		} else {
+			log.warn("Trainer not found with username: {}", username);
+		}
 	}
 	
 	
+	
+	public Long getTrainerIdByUsername(String username) {
+	    User user = userService.getByUsername(username);
+	    if (user == null) {
+	        throw new RuntimeException("Usuario no encontrado: " + username);
+	    }
+	    Trainer trainer = trainerDAO.findByUserId(user.getId())
+	            .orElseThrow(() -> new RuntimeException("Trainer no encontrado para el usuario: " + username));
+	    return trainer.getId();
+	}
+	
+	
+
 	public Trainer createTrainer(Trainer trainer) {
 		return trainerDAO.save(trainer);
 	}
@@ -253,9 +208,25 @@ public class TrainerService {
 	}
 
 	public Trainer getByUserId(Long userId) {
-	    return trainerDAO.findByUserId(userId)
-	        .orElseThrow(() -> new RuntimeException("Trainer no encontrado para userId: " + userId));
+		return trainerDAO.findByUserId(userId)
+				.orElseThrow(() -> new RuntimeException("Trainer no encontrado para userId: " + userId));
 	}
-
+	
+	
+	public void toggleTrainerStatus1(String username, boolean activate) {
+	    User user = userService.getByUsername(username);
+	    if (user == null) {
+	        throw new RuntimeException("Trainer not found with username: " + username);
+	    }
+	    
+	    if (user.getIsActive() == activate) {
+	        log.warn("Trainer is already {}", activate ? "active" : "inactive");
+	        return;
+	    }
+	    
+	    user.setIsActive(activate);
+	    userService.save(user);
+	    log.info("Trainer {} successfully {}", username, activate ? "activated" : "deactivated");
+	}
 
 }
