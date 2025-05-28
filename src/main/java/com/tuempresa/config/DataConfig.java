@@ -13,9 +13,9 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 
-@Configuration
-@EnableJdbcRepositories(basePackages = "com.tuempresa.dao")
-@ComponentScan(basePackages = "com.tuempresa")
+//@Configuration
+//@EnableJdbcRepositories(basePackages = "com.tuempresa.dao")
+//@ComponentScan(basePackages = "com.tuempresa")
 public class DataConfig extends AbstractJdbcConfiguration {
 
 	@Bean

@@ -1,38 +1,12 @@
 package com.tuempresa;
 
-import org.apache.catalina.Context;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.startup.Tomcat;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.tuempresa.config.DataConfig;
-import com.tuempresa.config.WebConfig;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@ComponentScan(basePackages = "com.tuempresa")
+//@ComponentScan(basePackages = "com.tuempresa")
+@SpringBootApplication
 public class TrainingAppApplication {
-	public static void main(String[] args) throws Exception {
-		Tomcat tomcat = new Tomcat();
-		tomcat.setPort(8081);
-
-		Context ctx = tomcat.addContext("", null);
-
-		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-		appContext.register(WebConfig.class, DataConfig.class);
-
-		DispatcherServlet servlet = new DispatcherServlet(appContext);
-		Wrapper wrapper = Tomcat.addServlet(ctx, "dispatcher", servlet);
-		wrapper.setLoadOnStartup(1);
-
-		ctx.addServletMappingDecoded("/", "dispatcher");
-
-		tomcat.start();
-		log.info("Aplicación iniciada en http://localhost:{}", tomcat.getConnector().getPort());
-		tomcat.getServer().await();
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(TrainingAppApplication.class, args);
+    }
 }
