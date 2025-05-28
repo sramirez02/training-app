@@ -48,7 +48,7 @@ public class TraineeController {
 		return traineeService.getTraineeUserByUsernameUser(username);
 	}
 
-	@PostMapping("")
+	@PostMapping("/create-trainee")
 	public CreateGymUserResponseDto createTrainee(@RequestBody CreateTraineeRequestDto traineeRequestDto) {
 		return traineeService.createUserTrainee(traineeRequestDto);
 
@@ -68,6 +68,7 @@ public class TraineeController {
         TraineeProfileResponseDto updatedProfile = traineeService.updateTraineeProfile(request);
         return ResponseEntity.ok(updatedProfile);
     }
+	
 
 	@DeleteMapping("/{username}")
     public ResponseEntity<Void> deleteTraineeProfile(@PathVariable String username) {

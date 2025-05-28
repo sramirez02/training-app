@@ -42,7 +42,7 @@ public class TrainerController {
 		return trainerService.getTrainerUserByUsernameUser(username);
 	}
 
-	@PostMapping("")
+	@PostMapping("/create-trainer")
 	public CreateGymUserResponseDto createTrainer(@RequestBody CreateTrainerRequestDto trainerRequestDto) {
 		return trainerService.createUserTrainer(trainerRequestDto);
 	}
