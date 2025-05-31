@@ -38,10 +38,10 @@ import lombok.RequiredArgsConstructor;
 public class TraineeController {
 	private final TraineeService traineeService;
 
-	//NUEVO PARA 12
+	
 	@Autowired
     private TrainingService trainingService;
-	//AQUI
+	
 
 	@GetMapping("/username/{username}")
 	public User getTraineeByUsername(@PathVariable String username) {
