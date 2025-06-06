@@ -10,21 +10,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class TrainingMetrics {
 
-    // Contadores para métricas de login
+    
     private final Counter trainerLoginSuccessCounter;
     private final Counter trainerLoginFailureCounter;
     private final Counter traineeLoginSuccessCounter;
     private final Counter traineeLoginFailureCounter;
     
-    // Métricas para operaciones CRUD
+    
     private final Counter trainingCreatedCounter;
     private final Counter trainingDeletedCounter;
 
     public TrainingMetrics(MeterRegistry registry) {
-        // Inicializar todas las métricas
+        
         trainerLoginSuccessCounter = Counter.builder("training.trainer.login.success")
                 .description("Número de logins exitosos de entrenadores")
-                .tag("role", "trainer")  // Agrega tags para mejor filtrado
+                .tag("role", "trainer")  
                 .register(registry);
         
         trainerLoginFailureCounter = Counter.builder("training.trainer.login.failure")
@@ -53,10 +53,10 @@ public class TrainingMetrics {
                 .register(registry);
     }
 
-    // Métodos para incrementar contadores
+    
     public void incrementTrainerLoginSuccess() {
         trainerLoginSuccessCounter.increment();
-        log.info("Trainer login success incremented");  // Agrega logging
+        log.info("Trainer login success incremented"); 
     }
 
     public void incrementTrainerLoginFailure() {

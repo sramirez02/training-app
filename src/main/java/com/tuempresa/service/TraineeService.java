@@ -125,7 +125,7 @@ public class TraineeService {
                     .username(trainerUser.getUsername())
                     .firstName(trainerUser.getFirstName())
                     .lastName(trainerUser.getLastName())
-                    .specialization(trainingType) // Usa el objeto TrainingType completo
+                    .specialization(trainingType) 
                     .build();
             })
             .collect(Collectors.toList());
@@ -138,7 +138,7 @@ public class TraineeService {
         
         User user = userService.getByUsername(request.getUsername());
         if (user == null) {
-            throw new RuntimeException("Usuario no encontrado: " + request.getUsername());
+            throw new RuntimeException("Username not found: " + request.getUsername());
         }
 
         user.setFirstName(request.getFirstName());
@@ -163,7 +163,7 @@ public class TraineeService {
         User user = userService.getByUsername(username);
         
         if (user == null) {
-            throw new RuntimeException("Usuario no encontrado: " + username);
+            throw new RuntimeException("Trainee not found: " + username);
         }
 
         Trainee trainee = traineeDAO.findByUserId(user.getId());
@@ -171,7 +171,7 @@ public class TraineeService {
             traineeDAO.delete(trainee); 
             log.info("Trainee eliminado: {}", username);
         } else {
-            throw new RuntimeException("Trainee no encontrado para el usuario: " + username);
+            throw new RuntimeException("Trainee not found with username:: " + username);
         }
     }
     
@@ -238,11 +238,11 @@ public class TraineeService {
 	public Long getTraineeIdByUsername(String username) {
 	    User user = userService.getByUsername(username);
 	    if (user == null) {
-	        throw new RuntimeException("Usuario no encontrado: " + username);
+	        throw new RuntimeException("Trainee not found: " + username);
 	    }
 	    Trainee trainee = traineeDAO.findByUserId(user.getId());
 	    if (trainee == null) {
-	        throw new RuntimeException("Trainee no encontrado para el usuario: " + username);
+	        throw new RuntimeException("Trainee not found to username:: " + username);
 	    }
 	    return trainee.getId();
 	} 

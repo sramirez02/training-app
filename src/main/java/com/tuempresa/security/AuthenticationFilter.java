@@ -1,21 +1,21 @@
 package com.tuempresa.security;
 
 
-import com.tuempresa.dao.UserDAO;
-import com.tuempresa.entity.User;
+import java.io.IOException;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.tuempresa.dao.UserDAO;
+import com.tuempresa.entity.User;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 @Component
 public class AuthenticationFilter extends OncePerRequestFilter {

@@ -60,8 +60,8 @@ public class TrainerService {
 		if (user == null) {
 			throw new RuntimeException("Usuario no encontrado: " + username);
 		}
-		Trainer trainer = this.getByUserId(user.getId()); // ✅ Devuelve Trainer, no Optional
-		user.setTrainer(trainer); // ✅ Asigna directamente el objeto Trainer
+		Trainer trainer = this.getByUserId(user.getId()); 
+		user.setTrainer(trainer);
 		return user;
 	}
 

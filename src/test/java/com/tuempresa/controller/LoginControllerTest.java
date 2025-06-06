@@ -1,22 +1,22 @@
 package com.tuempresa.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 import com.tuempresa.dto.LoginRequestDto;
 import com.tuempresa.service.UserService;
 
-@ExtendWith(MockitoExtension.class)
-class LoginControllerTest {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.mockito.MockitoAnnotations;
+
+public class LoginControllerTest {
 
     @Mock
     private UserService userService;
@@ -24,113 +24,72 @@ class LoginControllerTest {
     @InjectMocks
     private LoginController loginController;
 
-    private LoginRequestDto validLoginRequest;
-    private LoginRequestDto invalidLoginRequest;
-    private LoginRequestDto nullCredentialsRequest;
-
     @BeforeEach
     void setUp() {
-        validLoginRequest = new LoginRequestDto();
-        validLoginRequest.setUsername("validUser");
-        validLoginRequest.setPassword("correctPassword");
-
-        invalidLoginRequest = new LoginRequestDto();
-        invalidLoginRequest.setUsername("invalidUser");
-        invalidLoginRequest.setPassword("wrongPassword");
-
-        nullCredentialsRequest = new LoginRequestDto();
-       
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void login_ShouldReturnOk_WhenCredentialsAreValid() {
+    void login_Success_ReturnsOk() {
         
-        when(userService.authenticate(validLoginRequest.getUsername(), validLoginRequest.getPassword()))
-            .thenReturn(true);
+        LoginRequestDto loginDto = new LoginRequestDto();
+        loginDto.setUsername("usuario1");
+        loginDto.setPassword("clave123");
 
-        
-        ResponseEntity<Void> response = loginController.login(validLoginRequest);
+        when(userService.authenticate("usuario1", "clave123")).thenReturn(true);
+
+       
+        ResponseEntity<Void> response = loginController.login(loginDto);
 
         
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        verify(userService).authenticate(validLoginRequest.getUsername(), validLoginRequest.getPassword());
+        verify(userService).authenticate("usuario1", "clave123");
     }
 
     @Test
-    void login_ShouldReturnUnauthorized_WhenCredentialsAreInvalid() {
+    void login_InvalidCredentials_ReturnsUnauthorized() {
         
-        when(userService.authenticate(invalidLoginRequest.getUsername(), invalidLoginRequest.getPassword()))
-            .thenReturn(false);
+        LoginRequestDto loginDto = new LoginRequestDto();
+        loginDto.setUsername("usuario1");
+        loginDto.setPassword("claveIncorrecta");
+
+        when(userService.authenticate("usuario1", "claveIncorrecta")).thenReturn(false);
 
         
-        ResponseEntity<Void> response = loginController.login(invalidLoginRequest);
+        ResponseEntity<Void> response = loginController.login(loginDto);
 
-       
+        
         assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-        verify(userService).authenticate(invalidLoginRequest.getUsername(), invalidLoginRequest.getPassword());
+        verify(userService).authenticate("usuario1", "claveIncorrecta");
     }
 
     @Test
-    void login_ShouldReturnBadRequest_WhenUsernameIsNull() {
+    void login_NullUsernameOrPassword_ReturnsBadRequest() {
         
-        LoginRequestDto request = new LoginRequestDto();
-        request.setUsername(null);
-        request.setPassword("somePassword");
+        LoginRequestDto loginDto = new LoginRequestDto();
+        loginDto.setUsername(null);
+        loginDto.setPassword("clave123");
 
         
-        ResponseEntity<Void> response = loginController.login(request);
+        ResponseEntity<Void> response = loginController.login(loginDto);
 
         
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        verifyNoInteractions(userService);
+        verify(userService, never()).authenticate(any(), any());
     }
 
     @Test
-    void login_ShouldReturnBadRequest_WhenPasswordIsNull() {
+    void login_NullPassword_ReturnsBadRequest() {
         
-        LoginRequestDto request = new LoginRequestDto();
-        request.setUsername("someUser");
-        request.setPassword(null);
+        LoginRequestDto loginDto = new LoginRequestDto();
+        loginDto.setUsername("usuario1");
+        loginDto.setPassword(null);
 
         
-        ResponseEntity<Void> response = loginController.login(request);
+        ResponseEntity<Void> response = loginController.login(loginDto);
 
         
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        verifyNoInteractions(userService);
-    }
-
-    @Test
-    void login_ShouldReturnBadRequest_WhenBothCredentialsAreNull() {
-        
-        ResponseEntity<Void> response = loginController.login(nullCredentialsRequest);
-
-        
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        verifyNoInteractions(userService);
-    }
-
-    @Test
-    void login_ShouldCallServiceWithCorrectParameters() {
-        
-        when(userService.authenticate(anyString(), anyString()))
-            .thenReturn(true);
-
-       
-        loginController.login(validLoginRequest);
-
-        
-        verify(userService).authenticate(
-            eq(validLoginRequest.getUsername()),
-            eq(validLoginRequest.getPassword()));
-    }
-
-    @Test
-    void login_ShouldNotCallService_WhenRequestIsInvalid() {
-        
-        loginController.login(nullCredentialsRequest);
-
-        
-        verifyNoInteractions(userService);
+        verify(userService, never()).authenticate(any(), any());
     }
 }

@@ -1,22 +1,21 @@
 package com.tuempresa.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
+import com.tuempresa.dto.ChangePasswordRequestDto;
+import com.tuempresa.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.tuempresa.dto.ChangePasswordRequestDto;
-import com.tuempresa.service.UserService;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class GymUserControllerTest {
+import org.mockito.MockitoAnnotations;
+
+public class GymUserControllerTest {
 
     @Mock
     private UserService userService;
@@ -24,88 +23,46 @@ class GymUserControllerTest {
     @InjectMocks
     private GymUserController gymUserController;
 
-    private ChangePasswordRequestDto validRequest;
-    private ChangePasswordRequestDto invalidRequest;
-
     @BeforeEach
     void setUp() {
-        validRequest = new ChangePasswordRequestDto();
-        validRequest.setUsername("testUser");
-        validRequest.setCurrentPassword("oldPass123");
-        validRequest.setNewPassword("newPass123");
-
-        invalidRequest = new ChangePasswordRequestDto();
-        invalidRequest.setUsername("wrongUser");
-        invalidRequest.setCurrentPassword("wrongPass");
-        invalidRequest.setNewPassword("newPass123");
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void changePassword_ShouldReturnOk_WhenPasswordChangedSuccessfully() {
+    void changePassword_Success_ReturnsOk() {
         
-        when(userService.changePassword(
-            validRequest.getUsername(),
-            validRequest.getCurrentPassword(),
-            validRequest.getNewPassword()))
-            .thenReturn(true);
+        ChangePasswordRequestDto request = new ChangePasswordRequestDto();
+        request.setUsername("usuario1");
+        request.setCurrentPassword("passwordActual");
+        request.setNewPassword("nuevoPassword");
 
-    
-        ResponseEntity<Void> response = gymUserController.changePassword(validRequest);
+        when(userService.changePassword("usuario1", "passwordActual", "nuevoPassword"))
+                .thenReturn(true);
+
+       
+        ResponseEntity<Void> response = gymUserController.changePassword(request);
 
         
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        verify(userService).changePassword(
-            validRequest.getUsername(),
-            validRequest.getCurrentPassword(),
-            validRequest.getNewPassword());
+        verify(userService).changePassword("usuario1", "passwordActual", "nuevoPassword");
     }
 
     @Test
-    void changePassword_ShouldReturnUnauthorized_WhenCredentialsAreInvalid() {
-       
-        when(userService.changePassword(
-            invalidRequest.getUsername(),
-            invalidRequest.getCurrentPassword(),
-            invalidRequest.getNewPassword()))
-            .thenReturn(false);
+    void changePassword_Failure_ReturnsUnauthorized() {
+        
+        ChangePasswordRequestDto request = new ChangePasswordRequestDto();
+        request.setUsername("usuario1");
+        request.setCurrentPassword("passwordIncorrecto");
+        request.setNewPassword("nuevoPassword");
+
+        when(userService.changePassword("usuario1", "passwordIncorrecto", "nuevoPassword"))
+                .thenReturn(false);
 
         
-        ResponseEntity<Void> response = gymUserController.changePassword(invalidRequest);
+        ResponseEntity<Void> response = gymUserController.changePassword(request);
 
         
         assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-        verify(userService).changePassword(
-            invalidRequest.getUsername(),
-            invalidRequest.getCurrentPassword(),
-            invalidRequest.getNewPassword());
-    }
-
-    @Test
-    void changePassword_ShouldCallServiceWithCorrectParameters() {
-        
-        when(userService.changePassword(anyString(), anyString(), anyString()))
-            .thenReturn(true);
-
-        
-        gymUserController.changePassword(validRequest);
-
-    
-        verify(userService).changePassword(
-            eq(validRequest.getUsername()),
-            eq(validRequest.getCurrentPassword()),
-            eq(validRequest.getNewPassword()));
-    }
-
-    @Test
-    void changePassword_ShouldReturnUnauthorized_WhenServiceReturnsFalse() {
-        
-        when(userService.changePassword(anyString(), anyString(), anyString()))
-            .thenReturn(false);
-
-        
-        ResponseEntity<Void> response = gymUserController.changePassword(validRequest);
-
-        
-        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+        verify(userService).changePassword("usuario1", "passwordIncorrecto", "nuevoPassword");
     }
 }

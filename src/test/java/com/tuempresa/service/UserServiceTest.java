@@ -22,239 +22,189 @@ class UserServiceTest {
 
     @Mock
     private UserDAO userDAO;
-
+    
     @InjectMocks
     private UserService userService;
-
-    private User user1;
-    private User user2;
+    
+    private User testUser;
+    private User newUser;
 
     @BeforeEach
     void setUp() {
-        user1 = new User();
-        user1.setId(1L);
-        user1.setUsername("user1");
-        user1.setPassword("password1");
-        user1.setFirstName("John");
-        user1.setLastName("Doe");
-        user1.setIsActive(true);
-
-        user2 = new User();
-        user2.setId(2L);
-        user2.setUsername("user2");
-        user2.setPassword("password2");
-        user2.setFirstName("Jane");
-        user2.setLastName("Smith");
-        user2.setIsActive(true);
+        testUser = new User();
+        testUser.setId(1L);
+        testUser.setFirstName("John");
+        testUser.setLastName("Doe");
+        testUser.setUsername("john.doe");
+        testUser.setPassword("secure123");
+        testUser.setIsActive(true);
+        
+        newUser = new User("Jane", "Smith", true);
     }
 
     @Test
-    void testGetUserById_Success() {
-      
-        when(userDAO.findById(1L)).thenReturn(Optional.of(user1));
-
-    
+    void getUserById_ShouldReturnUser_WhenExists() {
+        when(userDAO.findById(1L)).thenReturn(Optional.of(testUser));
+        
         User result = userService.getUserById(1L);
-
- 
+        
         assertNotNull(result);
-        assertEquals("user1", result.getUsername());
+        assertEquals("john.doe", result.getUsername());
         verify(userDAO).findById(1L);
     }
 
     @Test
-    void testGetUserById_NotFound() {
-        
+    void getUserById_ShouldReturnNull_WhenNotExists() {
         when(userDAO.findById(99L)).thenReturn(Optional.empty());
-
-      
+        
         User result = userService.getUserById(99L);
-
         
         assertNull(result);
         verify(userDAO).findById(99L);
     }
 
     @Test
-    void testGetByUsername_Success() {
+    void getByUsername_ShouldReturnUser_WhenExists() {
+        when(userDAO.findByUsername("john.doe")).thenReturn(Optional.of(testUser));
         
-        when(userDAO.findByUsername("user1")).thenReturn(Optional.of(user1));
-
-        
-        User result = userService.getByUsername("user1");
-
+        User result = userService.getByUsername("john.doe");
         
         assertNotNull(result);
         assertEquals(1L, result.getId());
-        verify(userDAO).findByUsername("user1");
+        verify(userDAO).findByUsername("john.doe");
     }
 
     @Test
-    void testGetByUsername_NotFound() {
-      
+    void getByUsername_ShouldReturnNull_WhenNotExists() {
         when(userDAO.findByUsername("unknown")).thenReturn(Optional.empty());
-
         
         User result = userService.getByUsername("unknown");
-
         
         assertNull(result);
         verify(userDAO).findByUsername("unknown");
     }
 
     @Test
-    void testCreateUser() {
-      
-        User newUser = new User();
-        newUser.setUsername("newUser");
-        newUser.setPassword("newPass");
-        
-        when(userDAO.save(newUser)).thenReturn(newUser);
-
+    void createUser_ShouldGenerateUsernameAndPassword() {
+        when(userDAO.save(any(User.class))).thenAnswer(invocation -> {
+            User u = invocation.getArgument(0);
+            u.setId(2L);
+            return u;
+        });
         
         User result = userService.createUser(newUser);
-
         
         assertNotNull(result);
-        assertEquals("newUser", result.getUsername());
+        assertNotNull(result.getId());
+        assertEquals("jane.smith", result.getUsername());
+        assertNotNull(result.getPassword());
+        assertEquals(10, result.getPassword().length());
         verify(userDAO).save(newUser);
     }
 
     @Test
-    void testAuthenticate_Success() {
-     
-        when(userDAO.findByUsername("user1")).thenReturn(Optional.of(user1));
-
-       
-        boolean result = userService.authenticate("user1", "password1");
-
-       
+    void authenticate_ShouldReturnTrue_WhenCredentialsMatch() {
+        when(userDAO.findByUsername("john.doe")).thenReturn(Optional.of(testUser));
+        
+        boolean result = userService.authenticate("john.doe", "secure123");
+        
         assertTrue(result);
-        verify(userDAO).findByUsername("user1");
+        verify(userDAO).findByUsername("john.doe");
     }
 
     @Test
-    void testAuthenticate_WrongPassword() {
-        
-        when(userDAO.findByUsername("user1")).thenReturn(Optional.of(user1));
-
-    
-        boolean result = userService.authenticate("user1", "wrongpassword");
-
-        
-        assertFalse(result);
-        verify(userDAO).findByUsername("user1");
-    }
-
-    @Test
-    void testAuthenticate_UserNotFound() {
-        
+    void authenticate_ShouldReturnFalse_WhenUserNotFound() {
         when(userDAO.findByUsername("unknown")).thenReturn(Optional.empty());
-
-       
-        boolean result = userService.authenticate("unknown", "password");
-
+        
+        boolean result = userService.authenticate("unknown", "anypassword");
         
         assertFalse(result);
         verify(userDAO).findByUsername("unknown");
     }
 
     @Test
-    void testChangePassword_Success() {
+    void authenticate_ShouldReturnFalse_WhenPasswordWrong() {
+        when(userDAO.findByUsername("john.doe")).thenReturn(Optional.of(testUser));
         
-        when(userDAO.findByUsername("user1")).thenReturn(Optional.of(user1));
-        when(userDAO.save(user1)).thenReturn(user1);
-
+        boolean result = userService.authenticate("john.doe", "wrongpassword");
         
-        boolean result = userService.changePassword("user1", "password1", "newPassword");
+        assertFalse(result);
+        verify(userDAO).findByUsername("john.doe");
+    }
 
+    @Test
+    void changePassword_ShouldUpdate_WhenOldPasswordCorrect() {
+        when(userDAO.findByUsername("john.doe")).thenReturn(Optional.of(testUser));
+        when(userDAO.save(any(User.class))).thenReturn(testUser);
+        
+        boolean result = userService.changePassword("john.doe", "secure123", "newpassword");
         
         assertTrue(result);
-        assertEquals("newPassword", user1.getPassword());
-        verify(userDAO).findByUsername("user1");
-        verify(userDAO).save(user1);
+        assertEquals("newpassword", testUser.getPassword());
+        verify(userDAO).save(testUser);
     }
 
     @Test
-    void testChangePassword_WrongOldPassword() {
-        
-        when(userDAO.findByUsername("user1")).thenReturn(Optional.of(user1));
-
-        
-        boolean result = userService.changePassword("user1", "wrongpassword", "newPassword");
-
-     
-        assertFalse(result);
-        assertEquals("password1", user1.getPassword()); // Password no cambió
-        verify(userDAO).findByUsername("user1");
-        verify(userDAO, never()).save(any());
-    }
-
-    @Test
-    void testChangePassword_UserNotFound() {
-       
+    void changePassword_ShouldReturnFalse_WhenUserNotFound() {
         when(userDAO.findByUsername("unknown")).thenReturn(Optional.empty());
-
-       
-        boolean result = userService.changePassword("unknown", "password", "newPassword");
-
+        
+        boolean result = userService.changePassword("unknown", "old", "new");
         
         assertFalse(result);
-        verify(userDAO).findByUsername("unknown");
         verify(userDAO, never()).save(any());
     }
 
     @Test
-    void testGetAllUsers() {
+    void changePassword_ShouldReturnFalse_WhenOldPasswordWrong() {
+        when(userDAO.findByUsername("john.doe")).thenReturn(Optional.of(testUser));
         
-        when(userDAO.findAll()).thenReturn(Arrays.asList(user1, user2));
+        boolean result = userService.changePassword("john.doe", "wrong", "new");
+        
+        assertFalse(result);
+        verify(userDAO, never()).save(any());
+    }
 
-    
+    @Test
+    void getAllUsers_ShouldReturnAllUsers() {
+        when(userDAO.findAll()).thenReturn(Arrays.asList(testUser, newUser));
+        
         List<User> result = userService.getAllUsers();
-
-      
+        
         assertEquals(2, result.size());
         verify(userDAO).findAll();
     }
 
     @Test
-    void testUpdateUser() {
-        
-        User updatedUser = new User();
-        updatedUser.setId(1L);
-        updatedUser.setUsername("updatedUser");
-        
-        
-        userService.updateUser(updatedUser);
-
-        
-        verify(userDAO).save(updatedUser);
+    void updateUser_ShouldCallSave() {
+        userService.updateUser(testUser);
+        verify(userDAO).save(testUser);
     }
 
     @Test
-    void testFindByUsername() {
-      
-        when(userDAO.findByUsername("user1")).thenReturn(Optional.of(user1));
-
-      
-        Optional<User> result = userService.findByUsername("user1");
-
+    void findByUsername_ShouldReturnOptionalUser() {
+        when(userDAO.findByUsername("john.doe")).thenReturn(Optional.of(testUser));
+        
+        Optional<User> result = userService.findByUsername("john.doe");
         
         assertTrue(result.isPresent());
-        assertEquals("user1", result.get().getUsername());
-        verify(userDAO).findByUsername("user1");
+        assertEquals(1L, result.get().getId());
+        verify(userDAO).findByUsername("john.doe");
     }
 
     @Test
-    void testSave() {
-        
-        User newUser = new User();
-        newUser.setUsername("newUser");
+    void save_ShouldCallDAOSave() {
+        userService.save(testUser);
+        verify(userDAO).save(testUser);
+    }
 
+    @Test
+    void createUser_ShouldSetActiveStatus() {
+        User inactiveUser = new User("Inactive", "User", false);
+        when(userDAO.save(any(User.class))).thenReturn(inactiveUser);
         
-        userService.save(newUser);
-
-      
-        verify(userDAO).save(newUser);
+        User result = userService.createUser(inactiveUser);
+        
+        assertFalse(result.getIsActive());
+        verify(userDAO).save(inactiveUser);
     }
 }

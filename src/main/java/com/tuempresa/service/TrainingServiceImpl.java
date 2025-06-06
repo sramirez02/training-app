@@ -52,8 +52,8 @@ public class TrainingServiceImpl implements TrainingService {
 
 		return trainings.stream().map(this::convertToDTO).collect(Collectors.toList());
 	}
-
-	private TrainingResponseDTO convertToDTO(Training training) {
+//QUITA AQUI EL PRIVATE
+	TrainingResponseDTO convertToDTO(Training training) {
 		TrainingResponseDTO dto = new TrainingResponseDTO();
 		dto.setTrainingName(training.getTrainingName());
 		dto.setTrainingDate(training.getTrainingDate());
@@ -71,8 +71,8 @@ public class TrainingServiceImpl implements TrainingService {
 
 		return trainings.stream().map(this::convertToTrainerDTO).collect(Collectors.toList());
 	}
-
-	private TrainerTrainingResponseDTO convertToTrainerDTO(Training training) {
+//QUITA AQUI PRIVATE
+	TrainerTrainingResponseDTO convertToTrainerDTO(Training training) {
 		TrainerTrainingResponseDTO dto = new TrainerTrainingResponseDTO();
 		dto.setTrainingName(training.getTrainingName());
 		dto.setTrainingDate(training.getTrainingDate());
