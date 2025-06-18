@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tuempresa.dao.UserDAO;
@@ -15,6 +16,9 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	//AQUI MODIFICACIÓN
+//	private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	public User getUserById(Long id) {
 		return userDAO.findById(id).orElse(null);
@@ -27,11 +31,11 @@ public class UserService {
     public User createUser(User user) {
     	userDAO.save(user);
         return user;
-    }
-
+    }    
     
     public boolean authenticate(String username, String password) {
         return userDAO.findByUsername(username)
+        		// .map(user -> encoder.matches(password, user.getPassword()))
             .map(user -> user.getPassword().equals(password))
             .orElse(false);
     }

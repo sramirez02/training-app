@@ -48,7 +48,7 @@ public class TraineeService {
 	    @Autowired
 	    private TrainingTypeDAO trainingTypeDAO;
 
-    @Autowired
+    
     public TraineeService(TraineeDAO traineeDAO, UserService userService) {
         this.traineeDAO = traineeDAO;
         this.userService = userService;

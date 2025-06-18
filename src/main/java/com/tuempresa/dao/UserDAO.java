@@ -10,8 +10,10 @@ import com.tuempresa.entity.User;
 @Repository
 public interface UserDAO extends CrudRepository<User, Long> {
 
-	Optional<User> findByUsernameAndPassword(String username, String password);
-	Optional<User> findByUsername(String username);
+	 Optional<User> findByUsername(String username);
+	
+//	Optional<User> findByUsernameAndPassword(String username, String password);
+//	Optional<User> findByUsername(String username);
 
 
 }

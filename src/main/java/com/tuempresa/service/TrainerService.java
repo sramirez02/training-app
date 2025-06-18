@@ -41,7 +41,7 @@ public class TrainerService {
 	@Autowired
 	private TrainingTypeDAO trainingTypeDAO;
 
-	@Autowired
+
 	public TrainerService(UserService userService, TrainerDAO trainerDAO) {
 		this.userService = userService;
 		this.trainerDAO = trainerDAO;
@@ -65,6 +65,8 @@ public class TrainerService {
 		return user;
 	}
 
+	
+	
 	public CreateGymUserResponseDto createUserTrainer(CreateTrainerRequestDto trainerRequestDto) {
 		User userToSave = new User(trainerRequestDto.getFirstName(), trainerRequestDto.getLastName(), true);
 
