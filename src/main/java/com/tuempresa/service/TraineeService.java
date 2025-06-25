@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tuempresa.dao.TraineeDAO;
@@ -48,10 +49,13 @@ public class TraineeService {
 	    @Autowired
 	    private TrainingTypeDAO trainingTypeDAO;
 
+	    private final PasswordEncoder encoder;
     
-    public TraineeService(TraineeDAO traineeDAO, UserService userService) {
+	    
+    public TraineeService(TraineeDAO traineeDAO, UserService userService, PasswordEncoder encoder) {
         this.traineeDAO = traineeDAO;
         this.userService = userService;
+        this.encoder = encoder;
     }
     
     public Trainee getByUsername(String username) {
@@ -73,22 +77,41 @@ public class TraineeService {
 		return user;
 	}
     
-   
-    
     public CreateGymUserResponseDto createUserTrainee(CreateTraineeRequestDto traineeRequestDto) {
-		User userToSave = new User(traineeRequestDto.getFirstName(), traineeRequestDto.getLastName(), true);
-		
-		
+        // 1. Generar contraseña aleatoria
+        String plainPassword = userService.generateRandomPassword();
+
+        // 2. Crear el usuario con la contraseña encriptada
+        User userToSave = new User(traineeRequestDto.getFirstName(), traineeRequestDto.getLastName(), true);
+        userToSave.setPassword(encoder.encode(plainPassword)); // encriptada
         User savedUser = userService.createUser(userToSave);
-        
+
+        // 3. Crear el trainee
         Trainee trainee = new Trainee();
         trainee.setUserId(savedUser.getId());
         trainee.setDateOfBirth(traineeRequestDto.getDateOfBirth());
         trainee.setAddress(traineeRequestDto.getAddress());
         traineeDAO.save(trainee);
-        
-        return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
+
+        // 4. Retornar usuario con contraseña original
+        return new CreateGymUserResponseDto(savedUser.getUsername(), plainPassword);
     }
+ 
+    
+//    public CreateGymUserResponseDto createUserTrainee(CreateTraineeRequestDto traineeRequestDto) {
+//		User userToSave = new User(traineeRequestDto.getFirstName(), traineeRequestDto.getLastName(), true);
+//		
+//		
+//        User savedUser = userService.createUser(userToSave);
+//        
+//        Trainee trainee = new Trainee();
+//        trainee.setUserId(savedUser.getId());
+//        trainee.setDateOfBirth(traineeRequestDto.getDateOfBirth());
+//        trainee.setAddress(traineeRequestDto.getAddress());
+//        traineeDAO.save(trainee);
+//        
+//        return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
+//    }
     
      
     

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tuempresa.dao.TraineeDAO;
@@ -31,7 +32,6 @@ public class TrainerService {
 	private final TrainerDAO trainerDAO;
 	private static final Logger log = LoggerFactory.getLogger(TrainerService.class);
 
-
 	@Autowired
 	private TraineeTrainerDAO traineeTrainerDAO;
 
@@ -41,10 +41,12 @@ public class TrainerService {
 	@Autowired
 	private TrainingTypeDAO trainingTypeDAO;
 
+	private final PasswordEncoder encoder;
 
-	public TrainerService(UserService userService, TrainerDAO trainerDAO) {
+	public TrainerService(UserService userService, TrainerDAO trainerDAO, PasswordEncoder encoder) {
 		this.userService = userService;
 		this.trainerDAO = trainerDAO;
+		this.encoder = encoder;
 	}
 
 	public Trainer getTrainerByUsername(String username) {
@@ -60,16 +62,18 @@ public class TrainerService {
 		if (user == null) {
 			throw new RuntimeException("Usuario no encontrado: " + username);
 		}
-		Trainer trainer = this.getByUserId(user.getId()); 
+		Trainer trainer = this.getByUserId(user.getId());
 		user.setTrainer(trainer);
 		return user;
 	}
 
-	
-	
+	// modificar el createGymUserResponseDto
 	public CreateGymUserResponseDto createUserTrainer(CreateTrainerRequestDto trainerRequestDto) {
-		User userToSave = new User(trainerRequestDto.getFirstName(), trainerRequestDto.getLastName(), true);
 
+		String plainPassword = userService.generateRandomPassword();
+
+		User userToSave = new User(trainerRequestDto.getFirstName(), trainerRequestDto.getLastName(), true);
+		userToSave.setPassword(encoder.encode(plainPassword)); // encriptada
 		User savedUser = userService.createUser(userToSave);
 
 		Trainer trainer = new Trainer();
@@ -77,10 +81,21 @@ public class TrainerService {
 		trainer.setTrainingTypeId(trainerRequestDto.getTrainingTypeId());
 		trainerDAO.save(trainer);
 
-		return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
+		return new CreateGymUserResponseDto(savedUser.getUsername(), plainPassword);
 	}
 
-	
+//	public CreateGymUserResponseDto createUserTrainer(CreateTrainerRequestDto trainerRequestDto) {
+//		User userToSave = new User(trainerRequestDto.getFirstName(), trainerRequestDto.getLastName(), true);
+//
+//		User savedUser = userService.createUser(userToSave);
+//
+//		Trainer trainer = new Trainer();
+//		trainer.setUserId(savedUser.getId());
+//		trainer.setTrainingTypeId(trainerRequestDto.getTrainingTypeId());
+//		trainerDAO.save(trainer);
+//
+//		return new CreateGymUserResponseDto(savedUser.getUsername(), savedUser.getPassword());
+//	}
 
 	public TrainerProfileResponseDto getTrainerProfile(String username) {
 
@@ -99,8 +114,9 @@ public class TrainerService {
 				.specialization(specialization).isActive(user.getIsActive())
 				.traineesList(getTraineesForTrainer(trainer.getId())).build();
 	}
+
 //AQUI PRIVATE
-	 List<TraineeInfoDto> getTraineesForTrainer(Long trainerId) {
+	List<TraineeInfoDto> getTraineesForTrainer(Long trainerId) {
 		return traineeTrainerDAO.findByTrainerId(trainerId).stream().map(relation -> {
 			Trainee trainee = traineeDAO.findById(relation.getTraineeId())
 					.orElseThrow(() -> new RuntimeException("Trainee no encontrado"));
@@ -182,20 +198,16 @@ public class TrainerService {
 			log.warn("Trainer not found with username: {}", username);
 		}
 	}
-	
-	
-	
+
 	public Long getTrainerIdByUsername(String username) {
-	    User user = userService.getByUsername(username);
-	    if (user == null) {
-	        throw new RuntimeException("Usuario no encontrado: " + username);
-	    }
-	    Trainer trainer = trainerDAO.findByUserId(user.getId())
-	            .orElseThrow(() -> new RuntimeException("Trainer no encontrado para el usuario: " + username));
-	    return trainer.getId();
+		User user = userService.getByUsername(username);
+		if (user == null) {
+			throw new RuntimeException("Usuario no encontrado: " + username);
+		}
+		Trainer trainer = trainerDAO.findByUserId(user.getId())
+				.orElseThrow(() -> new RuntimeException("Trainer no encontrado para el usuario: " + username));
+		return trainer.getId();
 	}
-	
-	
 
 	public Trainer createTrainer(Trainer trainer) {
 		return trainerDAO.save(trainer);
@@ -213,22 +225,21 @@ public class TrainerService {
 		return trainerDAO.findByUserId(userId)
 				.orElseThrow(() -> new RuntimeException("Trainer no encontrado para userId: " + userId));
 	}
-	
-	
+
 	public void toggleTrainerStatus1(String username, boolean activate) {
-	    User user = userService.getByUsername(username);
-	    if (user == null) {
-	        throw new RuntimeException("Trainer not found with username: " + username);
-	    }
-	    
-	    if (user.getIsActive() == activate) {
-	        log.warn("Trainer is already {}", activate ? "active" : "inactive");
-	        return;
-	    }
-	    
-	    user.setIsActive(activate);
-	    userService.save(user);
-	    log.info("Trainer {} successfully {}", username, activate ? "activated" : "deactivated");
+		User user = userService.getByUsername(username);
+		if (user == null) {
+			throw new RuntimeException("Trainer not found with username: " + username);
+		}
+
+		if (user.getIsActive() == activate) {
+			log.warn("Trainer is already {}", activate ? "active" : "inactive");
+			return;
+		}
+
+		user.setIsActive(activate);
+		userService.save(user);
+		log.info("Trainer {} successfully {}", username, activate ? "activated" : "deactivated");
 	}
 
 }

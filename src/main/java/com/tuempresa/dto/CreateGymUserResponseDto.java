@@ -13,3 +13,4 @@ public class CreateGymUserResponseDto {
 	private String password;
 
 }
+	

@@ -31,36 +31,12 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .addFilterBefore(jsonAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            .formLogin(form -> form.disable())  // Asegúrate de deshabilitar formLogin
+            .formLogin(form -> form.disable())  
             .httpBasic(basic -> basic.disable());
 
         return http.build();
     }
 
-
-
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig {
-//	
-//	@Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
-//        JsonAuthenticationFilter jsonAuthFilter = new JsonAuthenticationFilter(authenticationManager);
-//        
-//        http
-//            .csrf(csrf -> csrf.disable())
-//            .authorizeHttpRequests(auth -> auth
-//                .requestMatchers("/trainee/create-trainee", "/trainer/create-trainer").permitAll()
-//                .anyRequest().authenticated()
-//            )
-//            .sessionManagement(session -> session
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//            )
-//            .addFilterBefore(jsonAuthFilter, UsernamePasswordAuthenticationFilter.class)
-//            .httpBasic(basic -> basic.disable());
-//
-//        return http.build();
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -73,29 +49,3 @@ public class SecurityConfig {
     }
 }
 
-//	@Bean
-//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//		http.csrf(csrf -> csrf.disable())
-//				.authorizeHttpRequests(authorize -> authorize
-//						.requestMatchers("/trainee/create-trainee", "/trainer/create-trainer", "/login").permitAll()
-//						.anyRequest().authenticated())
-//
-//				.formLogin(form -> form.disable()
-////            .formLogin(form -> form
-////                .loginProcessingUrl("/login")
-////                .permitAll()
-//				).httpBasic(basic -> basic.disable());
-//
-//		return http.build();
-
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
-//
-//	// Añade este método para exponer el AuthenticationManager
-//	@Bean
-//	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-//		return authConfig.getAuthenticationManager();
-//	}
-//}

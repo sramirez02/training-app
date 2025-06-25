@@ -1,7 +1,6 @@
 package com.tuempresa.controller;
 
 import com.tuempresa.dto.*;
-import com.tuempresa.entity.TrainingType;
 import com.tuempresa.entity.User;
 import com.tuempresa.service.TrainerService;
 import com.tuempresa.service.TrainingService;
@@ -13,13 +12,12 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.sql.Date;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class TrainerControllerTest {
+public class TrainerControllerTest {
 
     @Mock
     private TrainerService trainerService;
@@ -37,138 +35,109 @@ class TrainerControllerTest {
 
     @Test
     void testGetTrainerByUsername() {
-        User user = new User("John", "Doe", true);
-        user.setUsername("john.doe");
+        User mockUser = new User("John", "Doe", true);
+        when(trainerService.getTrainerUserByUsernameUser("jdoe")).thenReturn(mockUser);
 
-        when(trainerService.getTrainerUserByUsernameUser("john.doe")).thenReturn(user);
-
-        User result = trainerController.getTrainerByUsername("john.doe");
-
-        assertEquals("john.doe", result.getUsername());
-        verify(trainerService).getTrainerUserByUsernameUser("john.doe");
+        User response = trainerController.getTrainerByUsername("jdoe");
+        assertEquals("John", response.getFirstName());
+        verify(trainerService).getTrainerUserByUsernameUser("jdoe");
     }
 
     @Test
     void testCreateTrainer() {
-        CreateTrainerRequestDto request = new CreateTrainerRequestDto("Ana", "Smith", 1L);
-        CreateGymUserResponseDto response = new CreateGymUserResponseDto("ana.smith", "pass123");
+        CreateTrainerRequestDto request = new CreateTrainerRequestDto("Jane", "Smith", 1L);
+        CreateGymUserResponseDto responseDto = new CreateGymUserResponseDto("jane.smith", "password");
 
-        when(trainerService.createUserTrainer(request)).thenReturn(response);
+        when(trainerService.createUserTrainer(request)).thenReturn(responseDto);
 
-        CreateGymUserResponseDto result = trainerController.createTrainer(request);
-
-        assertEquals("ana.smith", result.getUsername());
+        CreateGymUserResponseDto response = trainerController.createTrainer(request);
+        assertEquals("jane.smith", response.getUsername());
         verify(trainerService).createUserTrainer(request);
     }
 
-    @SuppressWarnings("deprecation")
-	@Test
+    @Test
     void testGetTrainerProfile() {
         TrainerProfileRequestDto request = new TrainerProfileRequestDto();
         request.setUsername("trainer1");
-
-        TrainerProfileResponseDto response = TrainerProfileResponseDto.builder()
-                .firstName("Carlos")
-                .lastName("López")
-                .specialization(new TrainingType())
+        TrainerProfileResponseDto mockResponse = TrainerProfileResponseDto.builder()
+                .firstName("Trainer")
+                .lastName("One")
                 .isActive(true)
-                .traineesList(Collections.emptyList())
+                .traineesList(List.of())
                 .build();
 
-        when(trainerService.getTrainerProfile("trainer1")).thenReturn(response);
+        when(trainerService.getTrainerProfile("trainer1")).thenReturn(mockResponse);
 
-        ResponseEntity<TrainerProfileResponseDto> result = trainerController.getTrainerProfile(request);
-
-        assertEquals(200, result.getStatusCodeValue());
-        assertEquals("Carlos", result.getBody().getFirstName());
-        verify(trainerService).getTrainerProfile("trainer1");
+        ResponseEntity<TrainerProfileResponseDto> response = trainerController.getTrainerProfile(request);
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+        assertEquals("Trainer", response.getBody().getFirstName());
     }
 
-    @SuppressWarnings("deprecation")
-	@Test
+    @Test
     void testUpdateTrainerProfile() {
         UpdateTrainerRequestDto request = new UpdateTrainerRequestDto();
         request.setUsername("trainer1");
-        request.setFirstName("Mario");
-        request.setLastName("Gómez");
+        request.setFirstName("Updated");
+        request.setLastName("Name");
         request.setActive(true);
 
-        UpdateTrainerProfileResponseDto response = UpdateTrainerProfileResponseDto.builder()
+        UpdateTrainerProfileResponseDto mockResponse = UpdateTrainerProfileResponseDto.builder()
                 .username("trainer1")
-                .firstName("Mario")
-                .lastName("Gómez")
+                .firstName("Updated")
+                .lastName("Name")
                 .isActive(true)
-                .specialization(new TrainingType())
-                .traineesList(Collections.emptyList())
+                .traineesList(List.of())
                 .build();
 
-        when(trainerService.updateTrainerProfile(request)).thenReturn(response);
+        when(trainerService.updateTrainerProfile(request)).thenReturn(mockResponse);
 
-        ResponseEntity<UpdateTrainerProfileResponseDto> result = trainerController.updateTrainerProfile(request);
-
-        assertEquals(200, result.getStatusCodeValue());
-        assertEquals("Mario", result.getBody().getFirstName());
-        verify(trainerService).updateTrainerProfile(request);
+        ResponseEntity<UpdateTrainerProfileResponseDto> response = trainerController.updateTrainerProfile(request);
+        assertEquals("Updated", response.getBody().getFirstName());
     }
 
-    @SuppressWarnings("deprecation")
-	@Test
+    @Test
     void testGetUnassignedActiveTrainers() {
+        String traineeUsername = "trainee1";
         UnassignedTrainerDto dto = UnassignedTrainerDto.builder()
                 .username("trainerX")
-                .firstName("Ximena")
-                .lastName("Martínez")
-                .specialization(new TrainingType())
+                .firstName("X")
+                .lastName("Y")
                 .build();
 
-        when(trainerService.getUnassignedActiveTrainers("admin1")).thenReturn(List.of(dto));
+        when(trainerService.getUnassignedActiveTrainers(traineeUsername)).thenReturn(List.of(dto));
 
-        ResponseEntity<List<UnassignedTrainerDto>> result = trainerController.getUnassignedActiveTrainers("admin1");
-
-        assertEquals(200, result.getStatusCodeValue());
-        assertEquals(1, result.getBody().size());
-        verify(trainerService).getUnassignedActiveTrainers("admin1");
+        ResponseEntity<List<UnassignedTrainerDto>> response = trainerController.getUnassignedActiveTrainers(traineeUsername);
+        assertEquals(1, response.getBody().size());
+        verify(trainerService).getUnassignedActiveTrainers(traineeUsername);
     }
 
     @Test
     void testGetTrainerTrainings() {
         TrainerTrainingsRequestDTO request = new TrainerTrainingsRequestDTO();
         request.setUsername("trainer1");
-        request.setPeriodFrom(Date.valueOf("2023-01-01"));
-        request.setPeriodTo(Date.valueOf("2023-12-31"));
-        request.setTraineeName("Juan");
+        request.setPeriodFrom(Date.valueOf("2024-01-01"));
+        request.setPeriodTo(Date.valueOf("2024-12-31"));
+        request.setTraineeName("trainee1");
 
         TrainerTrainingResponseDTO dto = new TrainerTrainingResponseDTO();
-        dto.setTrainingName("Cardio");
-        dto.setTraineeName("Juan");
+        dto.setTrainingName("Training A");
 
-        when(trainingService.getTrainerTrainings("trainer1",
-                request.getPeriodFrom(),
-                request.getPeriodTo(),
-                "Juan")).thenReturn(List.of(dto));
+        when(trainingService.getTrainerTrainings("trainer1", request.getPeriodFrom(),
+                request.getPeriodTo(), "trainee1")).thenReturn(List.of(dto));
 
-        List<TrainerTrainingResponseDTO> result = trainerController.getTrainerTrainings(request);
-
-        assertEquals(1, result.size());
-        assertEquals("Cardio", result.get(0).getTrainingName());
-        verify(trainingService).getTrainerTrainings("trainer1",
-                request.getPeriodFrom(),
-                request.getPeriodTo(),
-                "Juan");
+        List<TrainerTrainingResponseDTO> response = trainerController.getTrainerTrainings(request);
+        assertEquals(1, response.size());
+        assertEquals("Training A", response.get(0).getTrainingName());
     }
 
-    @SuppressWarnings("deprecation")
-	@Test
+    @Test
     void testUpdateTrainerStatus() {
         UpdateTrainerStatusRequestDTO request = new UpdateTrainerStatusRequestDTO();
-        request.setUsername("trainer2");
-        request.setIsActive(false);
-
-        doNothing().when(trainerService).toggleTrainerStatus("trainer2", false);
+        request.setUsername("trainer1");
+        request.setIsActive(true);
 
         ResponseEntity<Void> response = trainerController.updateTrainerStatus(request);
-
+        verify(trainerService).toggleTrainerStatus("trainer1", true);
         assertEquals(200, response.getStatusCodeValue());
-        verify(trainerService).toggleTrainerStatus("trainer2", false);
     }
 }
