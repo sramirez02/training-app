@@ -1,104 +1,153 @@
 package com.tuempresa.service;
 
-import com.tuempresa.dao.TrainingDAO;
-import com.tuempresa.dto.AddTrainingRequestDTO;
-import com.tuempresa.dto.TrainerTrainingResponseDTO;
-import com.tuempresa.dto.TrainingResponseDTO;
-import com.tuempresa.entity.Training;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.tuempresa.client.TrainerWorkloadClient;
+import com.tuempresa.dao.TrainingDAO;
+import com.tuempresa.dto.AddTrainingRequestDTO;
+import com.tuempresa.dto.WorkloadRequest;
+import com.tuempresa.entity.Training;
 
 @Service
 public class TrainingServiceImpl implements TrainingService {
 
-	private final TrainingDAO trainingDAO;
-	private final TraineeService traineeService;
-	private final TrainerService trainerService;
+    private static final Logger logger = LoggerFactory.getLogger(TrainingServiceImpl.class);
+    private static final DateTimeFormatter ISO_DATE = DateTimeFormatter.ISO_LOCAL_DATE; 
 
-	@Autowired
-	public TrainingServiceImpl(TrainingDAO trainingDAO, TraineeService traineeService, TrainerService trainerService) {
-		this.trainingDAO = trainingDAO;
-		this.traineeService = traineeService;
-		this.trainerService = trainerService;
-	}
+    private final TrainingDAO trainingDAO; 
+    private final TrainerWorkloadClient TrainerworkloadClient;
 
-	@Override
-	public List<Training> getTrainingsByCriteria(String traineeUsername, Date fromDate, Date toDate, String trainerName,
-			String trainingType) {
-		return trainingDAO.findTrainingsByCriteria(traineeUsername, fromDate, toDate, trainerName, trainingType);
-	}
+    public TrainingServiceImpl(TrainingDAO trainingRepository, TrainerWorkloadClient workloadClient) {
+        this.trainingDAO = trainingRepository;
+        this.TrainerworkloadClient = workloadClient;
+    }
 
-	@Override
-	public List<Training> getTrainingsByTrainerCriteria(String trainerUsername, Date fromDate, Date toDate,
-			String traineeName) {
-		return trainingDAO.findTrainingsByTrainerCriteria(trainerUsername, fromDate, toDate, traineeName);
-	}
+    @Override
+    public List<Training> getTrainingsByCriteria(String criteria1, Date startDate, Date endDate, String criteria2, String criteria3) {
+        
+        return Collections.emptyList();
+    }
 
-	@Override
-	public void addTraining(Training training) {
-		trainingDAO.addTraining(training);
-	}
+    @Override
+    public List<Training> getTrainingsByTrainerCriteria(String trainerUsername, Date fromDate, Date toDate, String traineeName) {
+        
+        return Collections.emptyList();
+    }
 
-	
+    @Override
+    @Transactional
+    public void addTraining(Training training) {
+        
+        logger.info("Guardando training local: {}", training);
+        if (trainingDAO != null) {
+        	trainingDAO.addTraining(training);
 
-	public List<TrainingResponseDTO> getTraineeTrainings(String username, Date periodFrom, Date periodTo,
-			String trainerName, String trainingType) {
-		List<Training> trainings = getTrainingsByCriteria(username, periodFrom, periodTo, trainerName, trainingType);
+        } else {
+            logger.warn("trainingRepository es null — revisa inyección si esperabas usarlo");
+        }
 
-		return trainings.stream().map(this::convertToDTO).collect(Collectors.toList());
-	}
-//QUITA AQUI EL PRIVATE
-	TrainingResponseDTO convertToDTO(Training training) {
-		TrainingResponseDTO dto = new TrainingResponseDTO();
-		dto.setTrainingName(training.getTrainingName());
-		dto.setTrainingDate(training.getTrainingDate());
-		dto.setTrainingType(training.getTrainingTypeId());
-		dto.setTrainingDuration(training.getTrainingDuration());
-		dto.setTrainerName(training.getTrainerId());
-		return dto;
-	}
+        
+        WorkloadRequest workload = mapTrainingToWorkload(training, "ADD");
 
-	
+        
+        try {
+            logger.info("Enviando workload al microservicio: {}", workload);
+            ResponseEntity<String> resp = TrainerworkloadClient.updateWorkload(workload);
+            logger.info("Respuesta workload-service: {} - {}", resp.getStatusCodeValue(), resp.getBody());
+        } catch (Exception ex) {
+            logger.error("Error al enviar workload al microservicio: {}", ex.getMessage(), ex);
+            
+        }
+    }
 
-	public List<TrainerTrainingResponseDTO> getTrainerTrainings(String username, Date periodFrom, Date periodTo,
-			String traineeName) {
-		List<Training> trainings = getTrainingsByTrainerCriteria(username, periodFrom, periodTo, traineeName);
+    @Override
+    public List<com.tuempresa.dto.TrainingResponseDTO> getTraineeTrainings(String username, Date periodFrom, Date periodTo, String trainerName, String trainingType) {
+        return Collections.emptyList();
+    }
 
-		return trainings.stream().map(this::convertToTrainerDTO).collect(Collectors.toList());
-	}
-//QUITA AQUI PRIVATE
-	TrainerTrainingResponseDTO convertToTrainerDTO(Training training) {
-		TrainerTrainingResponseDTO dto = new TrainerTrainingResponseDTO();
-		dto.setTrainingName(training.getTrainingName());
-		dto.setTrainingDate(training.getTrainingDate());
-		dto.setTrainingType(training.getTrainingTypeId());
-		dto.setTrainingDuration(training.getTrainingDuration());
+    @Override
+    public List<com.tuempresa.dto.TrainerTrainingResponseDTO> getTrainerTrainings(String username, Date periodFrom, Date periodTo, String traineeName) {
+        return Collections.emptyList();
+    }
 
-		dto.setTraineeName(training.getTrainingName());
-		return dto;
-	}
-
-	
-
-	@Override
-	 public void addTraining(AddTrainingRequestDTO trainingRequest) {
+    @Override
+    @Transactional
+    public void addTraining(AddTrainingRequestDTO trainingRequest) {
+        
         Training training = new Training();
+        
         training.setTrainingName(trainingRequest.getTrainingName());
-        training.setTrainingDate(trainingRequest.getTrainingDate());
+        training.setTrainingDate(trainingRequest.getTrainingDate()); 
         training.setTrainingDuration(trainingRequest.getTrainingDuration());
         
-        Long traineeId = traineeService.getTraineeIdByUsername(trainingRequest.getTraineeUsername());
-        Long trainerId = trainerService.getTrainerIdByUsername(trainingRequest.getTrainerUsername());
+        training.setTrainerId(0L);
+        training.setTraineeId(0L);
+        training.setTrainingTypeId(0L);
+
         
-        training.setTraineeId(traineeId);
-        training.setTrainerId(trainerId);
-        training.setTrainingTypeId(1L); 
+        if (trainingDAO != null) {
+        	trainingDAO.addTraining(training);
+
+        }
+
         
-        trainingDAO.addTraining(training);
+        WorkloadRequest workload = mapAddDtoToWorkload(trainingRequest, "ADD");
+
+        try {
+            logger.info("Enviando workload (desde AddTrainingRequestDTO) al microservicio: {}", workload);
+            ResponseEntity<String> resp = TrainerworkloadClient.updateWorkload(workload);
+            logger.info("Respuesta workload-service: {} - {}", resp.getStatusCodeValue(), resp.getBody());
+        } catch (Exception ex) {
+            logger.error("Error al enviar workload al microservicio: {}", ex.getMessage(), ex);
+        }
+    }
+
+
+    private WorkloadRequest mapTrainingToWorkload(Training t, String action) {
+        WorkloadRequest w = new WorkloadRequest();
+        
+        w.setTrainerUsername(String.valueOf(t.getTrainerId()));
+        w.setTrainerFirstName("N/A");
+        w.setTrainerLastName("N/A");
+        w.setActive(true);
+        w.setTrainingDate(parseToLocalDate(t.getTrainingDate()));
+        w.setTrainingDuration(t.getTrainingDuration());
+        w.setActionType(action);
+        return w;
+    }
+
+    private WorkloadRequest mapAddDtoToWorkload(AddTrainingRequestDTO dto, String action) {
+        WorkloadRequest w = new WorkloadRequest();
+        w.setTrainerUsername(dto.getTrainerUsername());
+        w.setTrainerFirstName("N/A");
+        w.setTrainerLastName("N/A");
+        w.setActive(true);
+        w.setTrainingDate(parseToLocalDate(dto.getTrainingDate()));
+        w.setTrainingDuration(dto.getTrainingDuration());
+        w.setActionType(action);
+        return w;
+    }
+ 
+    private LocalDate parseToLocalDate(String dateStr) {
+        if (dateStr == null || dateStr.isBlank()) {
+            return LocalDate.now();
+        }
+        try {
+            
+            return LocalDate.parse(dateStr, ISO_DATE);
+        } catch (Exception ex) {
+            logger.warn("No fue posible parsear la fecha '{}', uso la fecha actual. Formato esperado yyyy-MM-dd", dateStr);
+            return LocalDate.now();
+        }
     }
 }

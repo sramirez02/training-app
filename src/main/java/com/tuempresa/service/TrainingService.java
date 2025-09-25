@@ -7,7 +7,6 @@ import com.tuempresa.entity.Training;
 import java.util.Date;
 import java.util.List;
 
-
 public interface TrainingService {
 
     List<Training> getTrainingsByCriteria(String criteria1, Date startDate, Date endDate, String criteria2, String criteria3);
@@ -23,6 +22,4 @@ public interface TrainingService {
             Date periodTo, String traineeName);
     
     void addTraining(AddTrainingRequestDTO trainingRequest);
-    
-    
 }
